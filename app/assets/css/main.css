@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    @apply font-sans antialiased;
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto max-w-content px-4 sm:px-6 lg:px-8;
+  }
+
+  .section {
+    @apply py-20 sm:py-24;
+  }
+
+  .section-header {
+    @apply max-w-2xl;
+  }
+
+  .section-title {
+    @apply text-3xl font-bold text-slate-900 sm:text-4xl;
+  }
+
+  .section-subtitle {
+    @apply mt-4 text-lg text-slate-600;
+  }
+
+  .btn-primary {
+    @apply rounded-button bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark;
+  }
+
+  .btn-primary-sm {
+    @apply rounded-button bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark;
+  }
+
+  .btn-secondary {
+    @apply rounded-button border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10;
+  }
+
+  .card {
+    @apply rounded-card border border-slate-200 bg-surface-card p-6 shadow-sm;
+  }
+
+  .card-interactive {
+    @apply rounded-card border border-slate-200 p-6 transition hover:border-brand-muted hover:shadow-md;
+  }
+
+  .card-lg {
+    @apply rounded-card border border-slate-200 bg-surface-card p-8;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-slate-600 transition hover:text-brand;
+  }
+
+  .link-muted {
+    @apply text-sm text-slate-500 transition hover:text-brand;
+  }
+
+  .logo-text {
+    @apply text-lg font-bold tracking-tight text-slate-900;
+  }
+
+  .logo-accent {
+    @apply text-brand;
+  }
+
+  .input {
+    @apply w-full rounded-input border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+
+  .label {
+    @apply mb-1 block text-sm font-medium text-slate-700;
+  }
+
+  .hero-bg {
+    @apply relative overflow-hidden bg-surface text-white;
+  }
+
+  .hero-glow {
+    background: radial-gradient(circle at top right, rgb(249 115 22 / 0.25), transparent 50%);
+  }
+
+  .step-number {
+    @apply text-4xl font-bold text-brand/30;
+  }
+
+  .badge {
+    @apply mb-4 text-sm font-semibold uppercase tracking-widest text-brand-light;
+  }
+}
