@@ -43,6 +43,10 @@ html {
     @apply rounded-button bg-brand px-4 py-2 text-base font-semibold text-white transition hover:bg-brand-dark;
   }
 
+  .btn-menu-cta {
+    @apply rounded-button bg-sky-600 px-4 py-2 text-base font-semibold text-white transition hover:bg-sky-700;
+  }
+
   .btn-secondary {
     @apply rounded-button border border-white/20 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10;
   }
@@ -76,17 +80,41 @@ html {
   }
 
   .menu-fixed {
-    @apply fixed inset-x-0 top-0 z-[60] px-4 sm:px-6 lg:px-8;
+    @apply relative z-[70] px-4 sm:px-6 lg:px-8;
     padding-top: max(1rem, env(safe-area-inset-top, 0px));
+  }
+
+  @media (min-width: 768px) {
+    .menu-fixed {
+      @apply fixed inset-x-0 top-0;
+    }
   }
 
   .menu-bar {
     border-radius: 40px;
-    @apply relative z-[60] overflow-hidden border border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md;
+    @apply relative z-[70] overflow-hidden border border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md;
   }
 
-  .main-with-fixed-menu {
-    padding-top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 3.5rem);
+  .menu-burger-btn {
+    @apply inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-md transition hover:border-brand hover:text-brand;
+  }
+
+  .menu-burger-fab {
+    @apply absolute z-[80] md:hidden;
+    top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 0.75rem);
+    right: max(2rem, calc(1rem + env(safe-area-inset-right, 0px)));
+  }
+
+  @media (min-width: 640px) {
+    .menu-burger-fab {
+      right: max(3rem, calc(1.5rem + env(safe-area-inset-right, 0px)));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .main-with-fixed-menu {
+      padding-top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 3.5rem);
+    }
   }
 
   .input {
@@ -128,6 +156,10 @@ html {
 
   .hero-tag {
     @apply rounded-full border px-4 py-2 text-sm font-semibold shadow-sm backdrop-blur-sm;
+  }
+
+  .hero-tag-mobile {
+    @apply px-2.5 py-1 text-xs backdrop-blur-md;
   }
 
   .scroll-top-fab {
