@@ -21,7 +21,8 @@ const requiredDocuments = [
 const optionalDocuments = [
   {
     title: 'Доверенность',
-    description: 'Если автомобиль продаёт не собственник, а представитель по нотариальной доверенности.',
+    description:
+      'Если автомобиль продаёт не собственник, а представитель по нотариальной доверенности.',
   },
   {
     title: 'Справка из банка',
@@ -44,8 +45,8 @@ const optionalDocuments = [
       <div class="section-header">
         <h2 class="section-title">Какие документы нужны для выкупа авто</h2>
         <p class="section-subtitle">
-          Подготовьте базовый пакет — остальное подскажем при оценке. Помогаем с оформлением
-          и проверкой документов.
+          Подготовьте базовый пакет — остальное подскажем при оценке. Помогаем с оформлением и
+          проверкой документов.
         </p>
       </div>
 
@@ -54,15 +55,11 @@ const optionalDocuments = [
           Обязательные документы
         </h3>
         <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <article
-            v-for="doc in requiredDocuments"
-            :key="doc.title"
-            class="card"
-          >
+          <article v-for="doc in requiredDocuments" :key="doc.title" class="card">
             <h4 class="text-base font-semibold text-slate-900">
               {{ doc.title }}
             </h4>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            <p class="mt-2 text-base leading-relaxed text-slate-600">
               {{ doc.description }}
             </p>
           </article>
@@ -82,7 +79,7 @@ const optionalDocuments = [
             <h4 class="text-base font-semibold text-slate-900">
               {{ doc.title }}
             </h4>
-            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+            <p class="mt-2 text-base leading-relaxed text-slate-600">
               {{ doc.description }}
             </p>
           </article>
@@ -90,14 +87,13 @@ const optionalDocuments = [
       </div>
 
       <div class="mt-10 rounded-card border border-brand-muted bg-brand-muted/40 p-6 sm:p-8">
-        <p class="text-sm leading-relaxed text-slate-700 sm:text-base">
+        <p class="text-base leading-relaxed text-slate-700 sm:text-lg">
           <span class="font-semibold text-slate-900">Нет полного комплекта документов?</span>
-          Свяжитесь с нами — разберём вашу ситуацию индивидуально. Выкупаем авто в кредите,
-          после ДТП и с неполным пакетом документов.
+          <br />
+          Свяжитесь с нами — разберём вашу ситуацию индивидуально. Выкупаем авто в кредите, после
+          ДТП и с неполным пакетом документов.
         </p>
-        <a href="#contact" class="btn-primary-sm mt-4 inline-flex">
-          Уточнить по моему случаю
-        </a>
+        <a href="#contact" class="btn-primary-sm mt-4 inline-flex"> Уточнить по моему случаю </a>
       </div>
     </div>
   </section>

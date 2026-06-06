@@ -140,7 +140,7 @@ onUnmounted(() => {
               <h3 class="text-lg font-semibold text-slate-900">
                 {{ service.title }}
               </h3>
-              <p class="mt-2 flex-1 text-sm leading-relaxed text-slate-600">
+              <p class="mt-2 flex-1 text-base leading-relaxed text-slate-600">
                 {{ service.description }}
               </p>
               <a href="#contact" class="btn-primary-sm mt-6 inline-flex self-start">

@@ -10,7 +10,7 @@ html {
 
 @layer base {
   body {
-    @apply font-sans antialiased;
+    @apply font-sans text-base antialiased;
   }
 }
 
@@ -32,19 +32,19 @@ html {
   }
 
   .section-subtitle {
-    @apply mt-4 text-lg text-slate-600;
+    @apply mt-4 text-xl text-slate-600;
   }
 
   .btn-primary {
-    @apply rounded-button bg-brand px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-dark;
+    @apply rounded-button bg-brand px-6 py-3 text-base font-semibold text-white transition hover:bg-brand-dark;
   }
 
   .btn-primary-sm {
-    @apply rounded-button bg-brand px-4 py-2 text-sm font-semibold text-white transition hover:bg-brand-dark;
+    @apply rounded-button bg-brand px-4 py-2 text-base font-semibold text-white transition hover:bg-brand-dark;
   }
 
   .btn-secondary {
-    @apply rounded-button border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10;
+    @apply rounded-button border border-white/20 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10;
   }
 
   .card {
@@ -60,11 +60,11 @@ html {
   }
 
   .nav-link {
-    @apply text-sm font-medium text-slate-600 transition hover:text-brand;
+    @apply text-base font-medium text-slate-600 transition hover:text-brand;
   }
 
   .link-muted {
-    @apply text-sm text-slate-500 transition hover:text-brand;
+    @apply text-base text-slate-500 transition hover:text-brand;
   }
 
   .logo-text {
@@ -75,25 +75,47 @@ html {
     @apply text-brand;
   }
 
+  .menu-fixed {
+    @apply fixed inset-x-0 top-0 z-[60] px-4 sm:px-6 lg:px-8;
+    padding-top: max(1rem, env(safe-area-inset-top, 0px));
+  }
+
   .menu-bar {
     border-radius: 40px;
-    @apply overflow-hidden border border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md;
+    @apply relative z-[60] overflow-hidden border border-slate-200/80 bg-white/90 shadow-sm backdrop-blur-md;
+  }
+
+  .main-with-fixed-menu {
+    padding-top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 3.5rem);
   }
 
   .input {
-    @apply w-full rounded-input border border-slate-300 px-4 py-2.5 text-sm outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
+    @apply w-full rounded-input border border-slate-300 px-4 py-2.5 text-base outline-none focus:border-brand focus:ring-2 focus:ring-brand/20;
+  }
+
+  .input-error {
+    @apply border-red-400 focus:border-red-500 focus:ring-red-500/20;
+  }
+
+  .error-message {
+    @apply mt-1 text-sm text-red-500;
   }
 
   .label {
-    @apply mb-1 block text-sm font-medium text-slate-700;
+    @apply mb-1 block text-base font-medium text-slate-700;
   }
 
   .hero-bg {
-    @apply relative overflow-hidden bg-surface text-white;
+    @apply relative bg-transparent text-slate-900;
+  }
+
+  .btn-outline {
+    @apply rounded-button border border-slate-300 px-6 py-3 text-base font-semibold text-slate-700 transition hover:bg-slate-100;
   }
 
   .hero-glow {
-    background: radial-gradient(circle at top right, rgb(34 197 94 / 0.3), transparent 55%);
+    @apply pointer-events-none absolute inset-x-0 top-0 z-[1] h-[min(100vh,900px)];
+    background: radial-gradient(circle at top right, rgb(34 197 94 / 0.3), transparent 60%);
   }
 
   .step-number {
@@ -101,7 +123,17 @@ html {
   }
 
   .badge {
-    @apply mb-4 text-sm font-semibold uppercase tracking-widest text-brand-light;
+    @apply mb-4 text-base font-semibold uppercase tracking-widest text-brand-light;
+  }
+
+  .hero-tag {
+    @apply rounded-full border px-4 py-2 text-sm font-semibold shadow-sm backdrop-blur-sm;
+  }
+
+  .scroll-top-fab {
+    @apply fixed z-[55] inline-flex size-12 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-md transition hover:border-brand hover:text-brand;
+    bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+    right: max(1.5rem, env(safe-area-inset-right, 0px));
   }
 
   .slider-btn {

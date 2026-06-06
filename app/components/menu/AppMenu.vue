@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const links = [
-  { label: 'Главная', href: '#hero' },
   { label: 'Преимущества', href: '#advantages' },
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#how-it-works' },
@@ -12,9 +11,26 @@ const isOpen = ref(false)
 function closeMenu() {
   isOpen.value = false
 }
+
+watch(isOpen, (open) => {
+  if (!import.meta.client) return
+  document.body.style.overflow = open ? 'hidden' : ''
+})
+
+onUnmounted(() => {
+  if (import.meta.client) {
+    document.body.style.overflow = ''
+  }
+})
 </script>
 
 <template>
+  <Teleport to="body">
+    <Transition name="menu-backdrop">
+      <div v-if="isOpen" class="menu-backdrop" aria-hidden="true" @click="closeMenu" />
+    </Transition>
+  </Teleport>
+
   <header>
     <div class="flex items-center justify-between px-4 py-3 sm:px-6">
       <a href="#hero" class="logo-text"> Авто<span class="logo-accent">Выкуп</span> </a>
@@ -30,7 +46,8 @@ function closeMenu() {
       <button
         type="button"
         class="inline-flex items-center justify-center rounded-button p-2 text-slate-600 hover:bg-slate-100 md:hidden"
-        aria-label="Открыть меню"
+        :aria-label="isOpen ? 'Закрыть меню' : 'Открыть меню'"
+        :aria-expanded="isOpen"
         @click="isOpen = !isOpen"
       >
         <svg v-if="!isOpen" class="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -68,3 +85,19 @@ function closeMenu() {
     </nav>
   </header>
 </template>
+
+<style scoped>
+.menu-backdrop {
+  @apply fixed inset-0 z-[49] bg-slate-900/60 backdrop-blur-sm md:hidden;
+}
+
+.menu-backdrop-enter-active,
+.menu-backdrop-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.menu-backdrop-enter-from,
+.menu-backdrop-leave-to {
+  opacity: 0;
+}
+</style>

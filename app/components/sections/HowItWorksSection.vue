@@ -40,7 +40,7 @@ const steps = [
           <h3 class="mt-4 text-xl font-semibold text-slate-900">
             {{ item.title }}
           </h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-600">
+          <p class="mt-2 text-base leading-relaxed text-slate-600">
             {{ item.description }}
           </p>
         </article>
