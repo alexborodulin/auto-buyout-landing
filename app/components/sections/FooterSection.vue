@@ -7,6 +7,7 @@
       <nav class="flex gap-6">
         <a href="#advantages" class="link-muted">Преимущества</a>
         <a href="#services" class="link-muted">Услуги</a>
+        <a href="#documents" class="link-muted">Документы</a>
         <a href="#contact" class="link-muted">Контакты</a>
       </nav>
     </div>

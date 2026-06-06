@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         brand: {
-          DEFAULT: '#f97316',
-          dark: '#ea580c',
-          light: '#fb923c',
-          muted: '#ffedd5',
+          DEFAULT: '#16a34a',
+          dark: '#15803d',
+          light: '#4ade80',
+          muted: '#dcfce7',
         },
         surface: {
           DEFAULT: '#0f172a',
@@ -17,9 +17,10 @@ export default {
         },
       },
       borderRadius: {
-        button: '0.5rem',
-        card: '1rem',
-        input: '0.5rem',
+        menu: '40px',
+        button: '24px',
+        card: '24px',
+        input: '24px',
       },
       maxWidth: {
         content: '72rem',
