@@ -20,7 +20,7 @@ html {
   }
 
   .section {
-    @apply py-20 sm:py-24;
+    @apply py-12 md:py-16 lg:py-24;
   }
 
   .section-header {
@@ -28,11 +28,11 @@ html {
   }
 
   .section-title {
-    @apply text-3xl font-bold text-slate-900 sm:text-4xl;
+    @apply text-3xl font-bold text-slate-900 md:text-3xl lg:text-4xl;
   }
 
   .section-subtitle {
-    @apply mt-4 text-xl text-slate-600;
+    @apply mt-4 text-lg text-slate-600 lg:text-xl;
   }
 
   .btn-primary {
@@ -84,7 +84,7 @@ html {
     padding-top: max(1rem, env(safe-area-inset-top, 0px));
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .menu-fixed {
       @apply fixed inset-x-0 top-0;
     }
@@ -100,9 +100,10 @@ html {
   }
 
   .menu-burger-fab {
-    @apply absolute z-[80] md:hidden;
+    @apply fixed z-[80] lg:hidden;
     top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 0.75rem);
     right: max(2rem, calc(1rem + env(safe-area-inset-right, 0px)));
+    transform: translateZ(0);
   }
 
   @media (min-width: 640px) {
@@ -111,7 +112,7 @@ html {
     }
   }
 
-  @media (min-width: 768px) {
+  @media (min-width: 1024px) {
     .main-with-fixed-menu {
       padding-top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 3.5rem);
     }
@@ -151,7 +152,7 @@ html {
   }
 
   .badge {
-    @apply mb-4 text-base font-semibold uppercase tracking-widest text-brand-light;
+    @apply mb-4 text-sm font-semibold uppercase tracking-widest text-brand sm:text-base;
   }
 
   .hero-tag {
@@ -159,7 +160,7 @@ html {
   }
 
   .hero-tag-mobile {
-    @apply px-2.5 py-1 text-xs backdrop-blur-md;
+    @apply px-2.5 py-1 text-xs opacity-75 backdrop-blur-md;
   }
 
   .scroll-top-fab {
@@ -182,5 +183,9 @@ html {
 
   .service-icon {
     @apply mb-4 inline-flex size-12 items-center justify-center rounded-card bg-brand-muted text-brand;
+  }
+
+  .document-icon-muted {
+    @apply mb-4 inline-flex size-12 items-center justify-center rounded-card bg-slate-100 text-slate-500;
   }
 }

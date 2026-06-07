@@ -3,18 +3,22 @@ const requiredDocuments = [
   {
     title: 'Паспорт владельца',
     description: 'Действующий паспорт гражданина РФ — для оформления договора купли-продажи.',
+    icon: 'passport' as const,
   },
   {
     title: 'ПТС',
     description: 'Паспорт транспортного средства — бумажный или электронный.',
+    icon: 'pts' as const,
   },
   {
     title: 'СТС',
     description: 'Свидетельство о регистрации автомобиля.',
+    icon: 'sts' as const,
   },
   {
     title: 'Все комплекты ключей',
     description: 'Основной и запасной ключ, брелок сигнализации — если есть.',
+    icon: 'keys' as const,
   },
 ]
 
@@ -23,18 +27,22 @@ const optionalDocuments = [
     title: 'Доверенность',
     description:
       'Если автомобиль продаёт не собственник, а представитель по нотариальной доверенности.',
+    icon: 'power-of-attorney' as const,
   },
   {
     title: 'Справка из банка',
     description: 'Для кредитных авто — остаток задолженности и реквизиты для погашения.',
+    icon: 'bank' as const,
   },
   {
     title: 'Сервисная книжка и чеки',
     description: 'Не обязательны, но помогают подтвердить историю обслуживания.',
+    icon: 'service' as const,
   },
   {
     title: 'ДКП от предыдущего владельца',
     description: 'Желательно иметь, если вы не первый собственник.',
+    icon: 'contract' as const,
   },
 ]
 </script>
@@ -54,8 +62,11 @@ const optionalDocuments = [
         <h3 class="text-sm font-semibold uppercase tracking-widest text-brand">
           Обязательные документы
         </h3>
-        <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div class="mt-6 grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-4">
           <article v-for="doc in requiredDocuments" :key="doc.title" class="card">
+            <div class="service-icon">
+              <DocumentIcon :name="doc.icon" />
+            </div>
             <h4 class="text-base font-semibold text-slate-900">
               {{ doc.title }}
             </h4>
@@ -76,6 +87,9 @@ const optionalDocuments = [
             :key="doc.title"
             class="rounded-card border border-dashed border-slate-200 p-6"
           >
+            <div class="document-icon-muted">
+              <DocumentIcon :name="doc.icon" />
+            </div>
             <h4 class="text-base font-semibold text-slate-900">
               {{ doc.title }}
             </h4>

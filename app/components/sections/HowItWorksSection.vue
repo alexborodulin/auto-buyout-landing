@@ -30,7 +30,7 @@ const steps = [
         </p>
       </div>
 
-      <div class="mt-12 grid gap-8 md:grid-cols-3">
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
         <article
           v-for="item in steps"
           :key="item.step"

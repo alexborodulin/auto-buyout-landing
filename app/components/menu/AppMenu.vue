@@ -4,6 +4,7 @@ const links = [
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#how-it-works' },
   { label: 'Документы', href: '#documents' },
+  { label: 'Контакты', href: '#contact' },
 ]
 
 const { isMobileMenuOpen } = useMobileMenu()
@@ -66,18 +67,18 @@ onUnmounted(() => {
     <div class="flex items-center justify-between px-4 py-3 sm:px-6">
       <a href="#hero" class="logo-text"> Авто<span class="logo-accent">Выкуп</span> </a>
 
-      <nav class="hidden items-center gap-8 md:flex">
+      <nav class="hidden items-center gap-6 lg:flex xl:gap-8">
         <a v-for="link in links" :key="link.href" :href="link.href" class="nav-link">
           {{ link.label }}
         </a>
       </nav>
 
-      <a href="#contact" class="btn-menu-cta hidden md:inline-flex"> 💰 Оценить авто </a>
+      <a href="#contact" class="btn-menu-cta hidden lg:inline-flex"> 💰 Оценить авто </a>
 
-      <div class="size-11 shrink-0 md:hidden" aria-hidden="true" />
+      <div class="size-11 shrink-0 lg:hidden" aria-hidden="true" />
     </div>
 
-    <nav v-show="isMobileMenuOpen" class="border-t border-slate-200 bg-white px-4 py-4 md:hidden">
+    <nav v-show="isMobileMenuOpen" class="border-t border-slate-200 bg-white px-4 py-4 lg:hidden">
       <a
         v-for="link in links"
         :key="link.href"
@@ -96,7 +97,7 @@ onUnmounted(() => {
 
 <style scoped>
 .menu-backdrop {
-  @apply fixed inset-0 z-[49] bg-slate-900/60 backdrop-blur-sm md:hidden;
+  @apply fixed inset-0 z-[49] bg-slate-900/60 backdrop-blur-sm lg:hidden;
 }
 
 .menu-backdrop-enter-active,

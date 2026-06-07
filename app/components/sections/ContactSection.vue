@@ -112,18 +112,16 @@ const onSubmit = handleSubmit(() => {
 <template>
   <section id="contact" class="section bg-surface text-white">
     <div class="container-content">
-      <div class="grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div class="grid gap-10 md:grid-cols-2 md:items-start md:gap-12 lg:items-center">
         <div>
-          <h2 class="text-3xl font-bold sm:text-4xl">
-            Оцените автомобиль бесплатно
-          </h2>
-          <p class="mt-4 text-xl text-slate-300">
+          <h2 class="text-3xl font-bold md:text-3xl lg:text-4xl">Оцените автомобиль бесплатно</h2>
+          <p class="mt-4 text-lg text-slate-300 lg:text-xl">
             Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.
           </p>
           <ul class="mt-8 space-y-3 text-slate-300">
             <li>📞 +7 (999) 123-45-67</li>
             <li>✉️ info@avtovykup.ru</li>
-            <li>📍 Москва и Московская область</li>
+            <li>📍 Пенза и Пензенская область</li>
           </ul>
         </div>
 
@@ -142,7 +140,7 @@ const onSubmit = handleSubmit(() => {
                 placeholder="Иван"
                 :class="['input', { 'input-error': errors.name }]"
                 @blur="onNameBlur"
-              >
+              />
               <p v-if="errors.name" class="error-message">
                 {{ errors.name }}
               </p>
@@ -158,7 +156,7 @@ const onSubmit = handleSubmit(() => {
                 :class="['input', { 'input-error': errors.phone }]"
                 @focus="onPhoneFocus"
                 @blur="onPhoneBlur"
-              >
+              />
               <p v-if="errors.phone" class="error-message">
                 {{ errors.phone }}
               </p>
@@ -172,22 +170,22 @@ const onSubmit = handleSubmit(() => {
                 placeholder="Toyota Camry, 2018"
                 :class="['input', { 'input-error': errors.car }]"
                 @blur="onCarBlur"
-              >
+              />
               <p v-if="errors.car" class="error-message">
                 {{ errors.car }}
               </p>
             </div>
           </div>
-          <button type="submit" class="btn-primary mt-6 w-full">
-            Отправить заявку
-          </button>
+          <button type="submit" class="btn-primary mt-6 w-full">Отправить заявку</button>
         </form>
       </div>
     </div>
 
     <AppModal v-model="showSuccessModal" title="Заявка отправлена!">
       <template #icon>
-        <div class="mx-auto mb-4 inline-flex size-16 items-center justify-center rounded-card bg-brand-muted">
+        <div
+          class="mx-auto mb-4 inline-flex size-16 items-center justify-center rounded-card bg-brand-muted"
+        >
           <svg
             class="size-8 text-brand"
             viewBox="0 0 24 24"
