@@ -100,7 +100,7 @@ html {
   }
 
   .menu-burger-fab {
-    @apply fixed z-[80] lg:hidden;
+    @apply absolute z-[80] lg:hidden;
     top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 0.75rem);
     right: max(2rem, calc(1rem + env(safe-area-inset-right, 0px)));
     transform: translateZ(0);

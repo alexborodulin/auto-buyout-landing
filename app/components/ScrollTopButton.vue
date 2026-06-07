@@ -5,6 +5,10 @@ function onScroll() {
   isVisible.value = window.scrollY > 400
 }
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 onMounted(() => {
   onScroll()
   window.addEventListener('scroll', onScroll, { passive: true })
@@ -18,11 +22,12 @@ onUnmounted(() => {
 <template>
   <Teleport to="body">
     <Transition name="scroll-top">
-      <a
+      <button
         v-if="isVisible"
-        href="#hero"
+        type="button"
         class="scroll-top-fab"
         aria-label="Наверх"
+        @click="scrollToTop"
       >
         <svg
           class="size-5"
@@ -38,7 +43,7 @@ onUnmounted(() => {
             d="M5 15l7-7 7 7"
           />
         </svg>
-      </a>
+      </button>
     </Transition>
   </Teleport>
 </template>
