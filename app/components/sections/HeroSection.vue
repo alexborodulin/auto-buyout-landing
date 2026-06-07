@@ -7,30 +7,22 @@ const heroTags = [
   {
     label: 'Безопасно',
     position: 'left-[78%] top-[16%] -rotate-6',
-    mobilePosition: '',
     color: 'border-brand-muted bg-brand-muted/90 text-brand-dark',
-    mobileColor: 'border-brand-muted/50 bg-brand-muted/45 text-brand-dark',
   },
   {
     label: 'Оценка онлайн',
     position: 'left-[64%] top-[30%] rotate-3',
-    mobilePosition: 'left-[59%] top-[62%] rotate-3',
     color: 'border-sky-200 bg-sky-50/95 text-sky-700',
-    mobileColor: 'border-sky-200/50 bg-sky-50/45 text-sky-700',
   },
   {
     label: 'Деньги сразу',
     position: 'left-[76%] top-[39%] rotate-6',
-    mobilePosition: 'left-[71%] top-[69%] -rotate-3',
     color: 'border-amber-200 bg-amber-50/95 text-amber-800',
-    mobileColor: 'border-amber-200/50 bg-amber-50/45 text-amber-800',
   },
   {
     label: 'Любые авто',
     position: 'left-[58%] top-[46%] -rotate-3',
-    mobilePosition: 'left-[71%] top-[78%] -rotate-6',
     color: 'border-violet-200 bg-violet-50/95 text-violet-700',
-    mobileColor: 'border-violet-200/50 bg-violet-50/45 text-violet-700',
   },
 ]
 </script>
@@ -57,17 +49,6 @@ const heroTags = [
         :key="tag.label"
         class="hero-tag absolute"
         :class="[tag.position, tag.color]"
-      >
-        {{ tag.label }}
-      </span>
-    </div>
-
-    <div v-show="!isMobileMenuOpen" class="pointer-events-none absolute inset-0 z-[3] md:hidden">
-      <span
-        v-for="tag in heroTags.filter((t) => t.mobilePosition)"
-        :key="`mobile-${tag.label}`"
-        class="hero-tag hero-tag-mobile absolute"
-        :class="[tag.mobilePosition, tag.mobileColor]"
       >
         {{ tag.label }}
       </span>
