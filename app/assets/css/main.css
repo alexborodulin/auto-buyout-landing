@@ -188,4 +188,28 @@ html {
   .document-icon-muted {
     @apply mb-4 inline-flex size-12 items-center justify-center rounded-card bg-slate-100 text-slate-500;
   }
+
+  .car-slide-card {
+    @apply overflow-hidden rounded-card border border-slate-200 bg-white shadow-sm;
+  }
+
+  .car-slide-media {
+    @apply aspect-[3/4] w-full overflow-hidden;
+  }
+
+  .car-slide-media-landscape {
+    @apply flex items-center justify-center bg-slate-100;
+  }
+
+  .car-slide-image {
+    @apply h-full w-full object-cover;
+  }
+
+  .car-slide-image-landscape {
+    @apply object-contain p-2;
+  }
+
+  .car-slide-caption {
+    @apply px-4 py-3 text-center text-base font-semibold text-slate-900;
+  }
 }

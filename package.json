@@ -7,6 +7,7 @@
     "dev": "TMPDIR=/tmp nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "process-cars": "node scripts/process-cars.mjs",
     "format": "prettier --write .",
     "postinstall": "nuxt prepare"
   },
@@ -22,6 +23,7 @@
   },
   "devDependencies": {
     "prettier": "^3.8.3",
-    "prettier-plugin-tailwindcss": "^0.8.0"
+    "prettier-plugin-tailwindcss": "^0.8.0",
+    "sharp": "^0.34.5"
   }
 }

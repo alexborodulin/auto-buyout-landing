@@ -1,6 +1,7 @@
 <template>
   <div>
     <HeroSection />
+    <CarsSection />
     <AdvantagesSection />
     <ServicesSection />
     <HowItWorksSection />

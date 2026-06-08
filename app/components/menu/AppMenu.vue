@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const links = [
+  { label: 'Примеры', href: '#cars' },
   { label: 'Преимущества', href: '#advantages' },
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#how-it-works' },
