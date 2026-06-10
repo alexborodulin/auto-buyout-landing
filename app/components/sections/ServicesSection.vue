@@ -70,6 +70,8 @@ function prev() {
   goTo(currentIndex.value - 1)
 }
 
+const { onTouchStart, onTouchEnd } = useSwipe({ onSwipeLeft: next, onSwipeRight: prev })
+
 watch(slidesPerView, () => {
   if (currentIndex.value > maxIndex.value) {
     currentIndex.value = maxIndex.value
@@ -127,6 +129,8 @@ onUnmounted(() => {
         <div
           class="flex transition-transform duration-300 ease-out"
           :style="trackStyle"
+          @touchstart.passive="onTouchStart"
+          @touchend.passive="onTouchEnd"
         >
           <article
             v-for="service in services"
