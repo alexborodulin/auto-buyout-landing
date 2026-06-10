@@ -7,7 +7,6 @@ const links = [
   { label: 'Услуги', href: '#services' },
   { label: 'Как работаем', href: '#how-it-works' },
   { label: 'Документы', href: '#documents' },
-  { label: 'Контакты', href: '#contact' },
 ]
 
 const { isMobileMenuOpen } = useMobileMenu()
@@ -66,7 +65,13 @@ onUnmounted(() => {
       class="menu-phone-fab lg:hidden"
       aria-label="Позвонить {{ contactPhones.short.display }}"
     >
-      <svg class="size-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+      <svg
+        class="size-3.5 shrink-0"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
@@ -94,7 +99,13 @@ onUnmounted(() => {
 
       <div class="hidden items-center gap-3 lg:flex">
         <a :href="`tel:${contactPhones.short.tel}`" class="menu-phone-short">
-          <svg class="size-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+          <svg
+            class="size-4 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
             <path
               stroke-linecap="round"
               stroke-linejoin="round"
