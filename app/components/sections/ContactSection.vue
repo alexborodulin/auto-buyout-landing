@@ -3,6 +3,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
 import { contactPhones } from '~/constants/contact'
+import { contactEmail } from '~/constants/site'
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 const PHONE_PREFIX = '+7 ('
@@ -50,6 +51,10 @@ const {
 const [name] = defineField('name', noAutoValidateConfig)
 const [phone] = defineField('phone', noAutoValidateConfig)
 const [car] = defineField('car', noAutoValidateConfig)
+
+const honeypot = ref('')
+const isSubmitting = ref(false)
+const submitError = ref('')
 
 function isPhoneEmpty(value: string | undefined) {
   return !value || value === PHONE_PREFIX
@@ -103,10 +108,32 @@ function onCarBlur() {
 
 const showSuccessModal = ref(false)
 
-const onSubmit = handleSubmit(() => {
-  // TODO: подключить отправку формы
-  resetForm()
-  showSuccessModal.value = true
+const onSubmit = handleSubmit(async (values) => {
+  isSubmitting.value = true
+  submitError.value = ''
+
+  try {
+    await $fetch('/api/contact', {
+      method: 'POST',
+      body: {
+        name: values.name,
+        phone: values.phone,
+        car: values.car || undefined,
+        _hp: honeypot.value,
+      },
+    })
+    resetForm()
+    honeypot.value = ''
+    showSuccessModal.value = true
+  } catch (err: unknown) {
+    const message =
+      err && typeof err === 'object' && 'data' in err
+        ? (err as { data?: { message?: string } }).data?.message
+        : undefined
+    submitError.value = message ?? 'Не удалось отправить заявку. Попробуйте позвонить нам.'
+  } finally {
+    isSubmitting.value = false
+  }
 })
 </script>
 
@@ -132,17 +159,30 @@ const onSubmit = handleSubmit(() => {
                 {{ contactPhones.short.display }}
               </a>
             </li>
-            <li>✉️ info@avtovykup.ru</li>
+            <li>
+              ✉️
+              <a :href="contactEmail.mailto" class="contact-phone-link">{{ contactEmail.display }}</a>
+            </li>
             <li>📍 {{ nbsp('Пенза и Пензенская область') }}</li>
           </ul>
         </div>
 
         <form
-          class="rounded-card bg-surface-card p-6 text-slate-900 sm:p-8"
+          class="relative rounded-card bg-surface-card p-6 text-slate-900 sm:p-8"
           novalidate
           @submit.prevent="onSubmit"
         >
           <div class="space-y-4">
+            <!-- Honeypot — скрытое поле для ботов -->
+            <input
+              v-model="honeypot"
+              type="text"
+              name="_hp"
+              tabindex="-1"
+              autocomplete="off"
+              aria-hidden="true"
+              class="absolute size-0 overflow-hidden opacity-0"
+            />
             <div>
               <label for="name" class="label">Ваше имя</label>
               <input
@@ -188,7 +228,12 @@ const onSubmit = handleSubmit(() => {
               </p>
             </div>
           </div>
-          <button type="submit" class="btn-primary mt-6 w-full">{{ nbsp('Отправить заявку') }}</button>
+          <p v-if="submitError" class="error-message mt-4 text-center">
+            {{ submitError }}
+          </p>
+          <button type="submit" class="btn-primary mt-6 w-full" :disabled="isSubmitting">
+            {{ nbsp(isSubmitting ? 'Отправка…' : 'Отправить заявку') }}
+          </button>
         </form>
       </div>
     </div>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const SITE_URL = 'https://avtovykup.ru'
+import { SITE_URL, contactEmail } from '~/constants/site'
 
 useSeoMeta({
   title: 'Выкуп автомобилей в Пензе — срочный автовыкуп | АвтоВыкуп',
@@ -26,7 +26,7 @@ useHead({
         description: 'Срочный выкуп автомобилей в Пензе и Пензенской области',
         url: SITE_URL,
         telephone: '+79022039058',
-        email: 'info@avtovykup.ru',
+        email: contactEmail.display,
         address: {
           '@type': 'PostalAddress',
           addressLocality: 'Пенза',

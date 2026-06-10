@@ -16,8 +16,22 @@ export default defineNuxtConfig({
   ],
 
   site: {
-    url: 'https://avtovykup.ru',
-    name: 'АвтоВыкуп Пенза',
+    url: 'https://1выкуп.рф',
+    name: '1Выкуп',
+  },
+
+  runtimeConfig: {
+    telegramBotToken: process.env.TELEGRAM_BOT_TOKEN || '',
+    telegramChatId: process.env.TELEGRAM_CHAT_ID || '',
+    smtpHost: process.env.SMTP_HOST || 'smtp.yandex.ru',
+    smtpPort: Number(process.env.SMTP_PORT || 465),
+    smtpUser: process.env.SMTP_USER || '',
+    smtpPass: process.env.SMTP_PASS || '',
+    contactTo: process.env.CONTACT_TO || '',
+    public: {
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://1выкуп.рф',
+      contactEmail: process.env.NUXT_PUBLIC_CONTACT_EMAIL || 'info@1выкуп.рф',
+    },
   },
 
   sitemap: {
