@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { contactPhones } from '~/constants/contact'
+
 const links = [
   { label: 'Примеры', href: '#cars' },
   { label: 'Преимущества', href: '#advantages' },
@@ -59,6 +61,22 @@ onUnmounted(() => {
       </svg>
     </button>
 
+    <a
+      :href="`tel:${contactPhones.short.tel}`"
+      class="menu-phone-fab lg:hidden"
+      aria-label="Позвонить {{ contactPhones.short.display }}"
+    >
+      <svg class="size-3.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+        />
+      </svg>
+      {{ contactPhones.short.display }}
+    </a>
+
     <Transition name="menu-backdrop">
       <div v-if="isMobileMenuOpen" class="menu-backdrop" aria-hidden="true" @click="closeMenu" />
     </Transition>
@@ -74,7 +92,20 @@ onUnmounted(() => {
         </a>
       </nav>
 
-      <a href="#contact" class="btn-menu-cta hidden lg:inline-flex"> 💰 Оценить авто </a>
+      <div class="hidden items-center gap-3 lg:flex">
+        <a :href="`tel:${contactPhones.short.tel}`" class="menu-phone-short">
+          <svg class="size-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+            />
+          </svg>
+          {{ contactPhones.short.display }}
+        </a>
+        <a href="#contact" class="btn-menu-cta"> 💰 Оценить авто </a>
+      </div>
 
       <div class="size-11 shrink-0 lg:hidden" aria-hidden="true" />
     </div>
@@ -92,6 +123,22 @@ onUnmounted(() => {
       <a href="#contact" class="btn-menu-cta mt-3 block text-center" @click="closeMenu">
         💰 Оценить авто
       </a>
+      <div class="mt-4 space-y-2 border-t border-slate-200 pt-4 text-center">
+        <a
+          :href="`tel:${contactPhones.full.tel}`"
+          class="contact-phone-link block text-base font-semibold text-slate-900"
+          @click="closeMenu"
+        >
+          {{ contactPhones.full.display }}
+        </a>
+        <a
+          :href="`tel:${contactPhones.short.tel}`"
+          class="contact-phone-link block text-sm text-slate-600"
+          @click="closeMenu"
+        >
+          Короткий: {{ contactPhones.short.display }}
+        </a>
+      </div>
     </nav>
   </header>
 </template>

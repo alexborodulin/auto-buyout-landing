@@ -47,6 +47,23 @@ html {
     @apply rounded-button bg-sky-600 px-4 py-2 text-base font-semibold text-white transition hover:bg-sky-700;
   }
 
+  .menu-phone-short {
+    @apply inline-flex items-center gap-2 rounded-button border border-brand/25 bg-brand-muted/60 px-3 py-2 text-sm font-semibold text-brand transition hover:border-brand hover:bg-brand-muted;
+  }
+
+  .menu-phone-fab {
+    @apply absolute z-[81] inline-flex items-center gap-1.5 rounded-full border border-brand/25 bg-white px-3 py-1.5 text-sm font-semibold text-brand shadow-md backdrop-blur-sm transition hover:border-brand hover:bg-brand-muted/40 lg:hidden;
+    top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 0.8125rem);
+    right: calc(max(2rem, calc(1rem + env(safe-area-inset-right, 0px))) + 3.25rem);
+    transform: translateZ(0);
+  }
+
+  @media (min-width: 640px) {
+    .menu-phone-fab {
+      right: calc(max(3rem, calc(1.5rem + env(safe-area-inset-right, 0px))) + 3.25rem);
+    }
+  }
+
   .btn-secondary {
     @apply rounded-button border border-white/20 px-6 py-3 text-base font-semibold text-white transition hover:bg-white/10;
   }
@@ -100,7 +117,7 @@ html {
   }
 
   .menu-burger-fab {
-    @apply absolute z-[80] lg:hidden;
+    @apply absolute z-[82] lg:hidden;
     top: calc(max(1rem, env(safe-area-inset-top, 0px)) + 0.75rem);
     right: max(2rem, calc(1rem + env(safe-area-inset-right, 0px)));
     transform: translateZ(0);
@@ -211,5 +228,9 @@ html {
 
   .car-slide-caption {
     @apply px-4 py-3 text-center text-base font-semibold text-slate-900;
+  }
+
+  .contact-phone-link {
+    @apply font-medium underline-offset-2 transition hover:underline;
   }
 }

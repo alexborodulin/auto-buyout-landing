@@ -2,6 +2,7 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
+import { contactPhones } from '~/constants/contact'
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 const PHONE_PREFIX = '+7 ('
@@ -119,7 +120,18 @@ const onSubmit = handleSubmit(() => {
             Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.
           </p>
           <ul class="mt-8 space-y-3 text-slate-300">
-            <li>📞 +7 (999) 123-45-67</li>
+            <li>
+              📞
+              <a :href="`tel:${contactPhones.full.tel}`" class="contact-phone-link">
+                {{ contactPhones.full.display }}
+              </a>
+            </li>
+            <li>
+              📞 Короткий номер:
+              <a :href="`tel:${contactPhones.short.tel}`" class="contact-phone-link">
+                {{ contactPhones.short.display }}
+              </a>
+            </li>
             <li>✉️ info@avtovykup.ru</li>
             <li>📍 Пенза и Пензенская область</li>
           </ul>

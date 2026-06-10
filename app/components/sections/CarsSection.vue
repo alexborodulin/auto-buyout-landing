@@ -20,30 +20,30 @@ import car18 from '~/assets/images/cars-processed/car-18.webp'
 import car19 from '~/assets/images/cars-processed/car-19.webp'
 import car20 from '~/assets/images/cars-processed/car-20.webp'
 
-/** Заполните марку и год. Сначала вертикальные фото, затем горизонтальные */
+/** Сначала вертикальные фото, затем горизонтальные */
 const cars = [
   // Вертикальные
-  { image: car01, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car02, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car03, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car07, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car08, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car10, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car11, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car12, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car14, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car15, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car16, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
-  { image: car20, make: 'Марка', year: 'Год', orientation: 'portrait' as const },
+  { image: car01, make: 'Toyota Camry', year: '2019', orientation: 'portrait' as const },
+  { image: car02, make: 'Honda Accord', year: '2014', orientation: 'portrait' as const },
+  { image: car03, make: 'Nissan Qashqai', year: '2011', orientation: 'portrait' as const },
+  { image: car07, make: 'Nissan Terrano', year: '2017', orientation: 'portrait' as const },
+  { image: car08, make: 'Kia Rio', year: '2018', orientation: 'portrait' as const },
+  { image: car10, make: 'Mitsubishi L200', year: '2012', orientation: 'portrait' as const },
+  { image: car11, make: 'Nissan Teana', year: '2016', orientation: 'portrait' as const },
+  { image: car12, make: 'Mitsubishi Outlander XL', year: '2010', orientation: 'portrait' as const },
+  { image: car14, make: 'Kia Spectra', year: '2006', orientation: 'portrait' as const },
+  { image: car15, make: 'Haval Jolion', year: '2022', orientation: 'portrait' as const },
+  { image: car16, make: 'Hyundai Palisade', year: '2021', orientation: 'portrait' as const },
+  { image: car20, make: 'Geely Monjaro', year: '2023', orientation: 'portrait' as const },
   // Горизонтальные
-  { image: car04, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car05, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car06, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car09, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car13, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car17, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car18, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
-  { image: car19, make: 'Марка', year: 'Год', orientation: 'landscape' as const },
+  { image: car04, make: 'Lexus LX', year: '2018', orientation: 'landscape' as const },
+  { image: car05, make: 'BMW X6', year: '2011', orientation: 'landscape' as const },
+  { image: car06, make: 'Mazda 3', year: '2007', orientation: 'landscape' as const },
+  { image: car09, make: 'BMW X3', year: '2015', orientation: 'landscape' as const },
+  { image: car13, make: 'Hyundai Creta', year: '2018', orientation: 'landscape' as const },
+  { image: car17, make: 'OMODA C5', year: '2023', orientation: 'landscape' as const },
+  { image: car18, make: 'Geely Coolray', year: '2021', orientation: 'landscape' as const },
+  { image: car19, make: 'Geely Atlas Pro', year: '2022', orientation: 'landscape' as const },
 ]
 
 const currentIndex = ref(0)
