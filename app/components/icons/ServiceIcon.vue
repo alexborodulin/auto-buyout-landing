@@ -1,6 +1,6 @@
 <script setup lang="ts">
 defineProps<{
-  name: 'clock' | 'crash' | 'credit' | 'exchange' | 'truck' | 'camera'
+  name: 'clock' | 'crash' | 'credit' | 'exchange' | 'truck' | 'camera' | 'moto'
 }>()
 </script>
 
@@ -82,6 +82,22 @@ defineProps<{
       stroke-linejoin="round"
       stroke-width="2"
       d="M8.25 18.75a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 01-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m3 0h1.125c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9m9 9H9.75"
+    />
+  </svg>
+
+  <svg
+    v-else-if="name === 'moto'"
+    class="size-6"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    aria-hidden="true"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 17a2 2 0 100-4 2 2 0 000 4zm14 0a2 2 0 100-4 2 2 0 000 4zM7 15h3l1.5-3h4L17 15h1.5M9 12l2-4h2l2 4"
     />
   </svg>
 

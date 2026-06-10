@@ -9,6 +9,12 @@ import { contactPhones } from '~/constants/contact'
         <p class="text-base text-slate-500">
           © {{ new Date().getFullYear() }} АвтоВыкуп. Все права защищены.
         </p>
+        <p class="mt-1 text-base text-slate-500">
+          <span itemscope itemtype="https://schema.org/PostalAddress">
+            <span itemprop="addressLocality">Пенза</span> и
+            <span itemprop="addressRegion">Пензенская область</span>
+          </span>
+        </p>
         <p class="mt-2 text-base text-slate-500">
           <a :href="`tel:${contactPhones.full.tel}`" class="link-muted">{{ contactPhones.full.display }}</a>
           <span class="mx-2 text-slate-300">·</span>
