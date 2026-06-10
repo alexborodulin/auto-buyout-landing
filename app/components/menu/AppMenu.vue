@@ -93,7 +93,7 @@ onUnmounted(() => {
 
       <nav class="hidden items-center gap-6 lg:flex xl:gap-8">
         <a v-for="link in links" :key="link.href" :href="link.href" class="nav-link">
-          {{ link.label }}
+          {{ nbsp(link.label) }}
         </a>
       </nav>
 
@@ -115,7 +115,7 @@ onUnmounted(() => {
           </svg>
           {{ contactPhones.short.display }}
         </a>
-        <a href="#contact" class="btn-menu-cta"> 💰 Оценить авто </a>
+        <a href="#contact" class="btn-menu-cta"> 💰 {{ nbsp('Оценить авто') }} </a>
       </div>
 
       <div class="size-11 shrink-0 lg:hidden" aria-hidden="true" />
@@ -129,10 +129,10 @@ onUnmounted(() => {
         class="nav-link block py-2"
         @click="closeMenu"
       >
-        {{ link.label }}
+        {{ nbsp(link.label) }}
       </a>
       <a href="#contact" class="btn-menu-cta mt-3 block text-center" @click="closeMenu">
-        💰 Оценить авто
+        💰 {{ nbsp('Оценить авто') }}
       </a>
       <div class="mt-4 space-y-2 border-t border-slate-200 pt-4 text-center">
         <a
@@ -147,7 +147,7 @@ onUnmounted(() => {
           class="contact-phone-link block text-sm text-slate-600"
           @click="closeMenu"
         >
-          Короткий: {{ contactPhones.short.display }}
+          {{ nbsp(`Короткий: ${contactPhones.short.display}`) }}
         </a>
       </div>
     </nav>

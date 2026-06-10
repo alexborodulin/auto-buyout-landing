@@ -7,12 +7,11 @@ import { contactPhones } from '~/constants/contact'
     <div class="container-content flex flex-col items-center justify-between gap-4 sm:flex-row">
       <div class="text-center sm:text-left">
         <p class="text-base text-slate-500">
-          © {{ new Date().getFullYear() }} АвтоВыкуп. Все права защищены.
+          © {{ new Date().getFullYear() }} АвтоВыкуп. {{ nbsp('Все права защищены.') }}
         </p>
         <p class="mt-1 text-base text-slate-500">
           <span itemscope itemtype="https://schema.org/PostalAddress">
-            <span itemprop="addressLocality">Пенза</span> и
-            <span itemprop="addressRegion">Пензенская область</span>
+            <span itemprop="addressLocality">Пенза</span>{{ '\u00A0' }}и{{ '\u00A0' }}<span itemprop="addressRegion">Пензенская область</span>
           </span>
         </p>
         <p class="mt-2 text-base text-slate-500">

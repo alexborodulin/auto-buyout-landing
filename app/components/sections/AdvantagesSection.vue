@@ -24,10 +24,10 @@ const advantages = [
     <div class="container-content">
       <div class="section-header">
         <h2 class="section-title">
-          Почему выбирают нас
+          {{ nbsp('Почему выбирают нас') }}
         </h2>
         <p class="section-subtitle">
-          Простой и прозрачный процесс продажи автомобиля без скрытых комиссий.
+          {{ nbsp('Простой и прозрачный процесс продажи автомобиля без скрытых комиссий.') }}
         </p>
       </div>
 
@@ -38,10 +38,10 @@ const advantages = [
           class="card"
         >
           <h3 class="text-lg font-semibold text-slate-900">
-            {{ item.title }}
+            {{ nbsp(item.title) }}
           </h3>
           <p class="mt-2 text-base leading-relaxed text-slate-600">
-            {{ item.description }}
+            {{ nbsp(item.description) }}
           </p>
         </article>
       </div>

@@ -57,19 +57,18 @@ const heroTags = [
 
     <div class="container-content relative z-[5] py-16 md:py-20 lg:py-28">
       <div class="max-w-2xl md:max-w-xl lg:max-w-2xl">
-        <p class="badge">Выкуп автомобилей в Пензе</p>
+        <p class="badge">{{ nbsp('Выкуп автомобилей в Пензе') }}</p>
         <h1
           class="text-4xl font-bold leading-[1.15] sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:text-6xl"
         >
-          Продайте авто в Пензе — честно и без лишних хлопот
+          {{ nbsp('Продайте авто в Пензе — честно и без лишних хлопот') }}
         </h1>
         <p class="mt-6 text-lg text-slate-600 md:text-xl">
-          Срочный выкуп автомобилей в любом состоянии по Пензе и Пензенской области. Бесплатная оценка,
-          деньги в день сделки, выезд в течение 2 часов.
+          {{ nbsp('Срочный выкуп автомобилей в любом состоянии по Пензе и Пензенской области. Бесплатная оценка, деньги в день сделки, выезд в течение 2 часов.') }}
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
-          <a href="#contact" class="btn-primary">Получить оценку</a>
-          <a href="#how-it-works" class="btn-outline">Как это работает</a>
+          <a href="#contact" class="btn-primary">{{ nbsp('Получить оценку') }}</a>
+          <a href="#how-it-works" class="btn-outline">{{ nbsp('Как это работает') }}</a>
         </div>
       </div>
     </div>

@@ -91,9 +91,9 @@ onUnmounted(() => {
     <div class="container-content">
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div class="section-header">
-          <h2 class="section-title">Наши услуги</h2>
+          <h2 class="section-title">{{ nbsp('Наши услуги') }}</h2>
           <p class="section-subtitle">
-            Полный спектр услуг по выкупу автомобилей — подберём формат под вашу ситуацию.
+            {{ nbsp('Полный спектр услуг по выкупу автомобилей — подберём формат под вашу ситуацию.') }}
           </p>
         </div>
 
@@ -138,13 +138,13 @@ onUnmounted(() => {
                 <ServiceIcon :name="service.icon" />
               </div>
               <h3 class="text-lg font-semibold text-slate-900">
-                {{ service.title }}
+                {{ nbsp(service.title) }}
               </h3>
               <p class="mt-2 flex-1 text-base leading-relaxed text-slate-600">
-                {{ service.description }}
+                {{ nbsp(service.description) }}
               </p>
               <a href="#contact" class="btn-primary-sm mt-6 inline-flex self-start">
-                {{ service.cta }}
+                {{ nbsp(service.cta) }}
               </a>
             </div>
           </article>

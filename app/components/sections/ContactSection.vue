@@ -115,9 +115,9 @@ const onSubmit = handleSubmit(() => {
     <div class="container-content">
       <div class="grid gap-10 md:grid-cols-2 md:items-start md:gap-12 lg:items-center">
         <div>
-          <h2 class="text-3xl font-bold md:text-3xl lg:text-4xl">Оцените автомобиль бесплатно</h2>
+          <h2 class="text-3xl font-bold md:text-3xl lg:text-4xl">{{ nbsp('Оцените автомобиль бесплатно') }}</h2>
           <p class="mt-4 text-lg text-slate-300 lg:text-xl">
-            Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.
+            {{ nbsp('Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.') }}
           </p>
           <ul class="mt-8 space-y-3 text-slate-300">
             <li>
@@ -133,7 +133,7 @@ const onSubmit = handleSubmit(() => {
               </a>
             </li>
             <li>✉️ info@avtovykup.ru</li>
-            <li>📍 Пенза и Пензенская область</li>
+            <li>📍 {{ nbsp('Пенза и Пензенская область') }}</li>
           </ul>
         </div>
 
@@ -188,12 +188,12 @@ const onSubmit = handleSubmit(() => {
               </p>
             </div>
           </div>
-          <button type="submit" class="btn-primary mt-6 w-full">Отправить заявку</button>
+          <button type="submit" class="btn-primary mt-6 w-full">{{ nbsp('Отправить заявку') }}</button>
         </form>
       </div>
     </div>
 
-    <AppModal v-model="showSuccessModal" title="Заявка отправлена!">
+    <AppModal v-model="showSuccessModal" :title="nbsp('Заявка отправлена!')">
       <template #icon>
         <div
           class="mx-auto mb-4 inline-flex size-16 items-center justify-center rounded-card bg-brand-muted"
@@ -213,11 +213,11 @@ const onSubmit = handleSubmit(() => {
         </div>
       </template>
 
-      <p>Мы свяжемся с вами в ближайшее время.</p>
+      <p>{{ nbsp('Мы свяжемся с вами в ближайшее время.') }}</p>
 
       <template #footer>
         <button type="button" class="btn-primary w-full" @click="showSuccessModal = false">
-          Отлично
+          {{ nbsp('Отлично') }}
         </button>
       </template>
     </AppModal>

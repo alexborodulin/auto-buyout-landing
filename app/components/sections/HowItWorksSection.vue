@@ -23,10 +23,10 @@ const steps = [
     <div class="container-content">
       <div class="section-header">
         <h2 class="section-title">
-          Как мы работаем
+          {{ nbsp('Как мы работаем') }}
         </h2>
         <p class="section-subtitle">
-          Три простых шага от заявки до денег на вашем счёте.
+          {{ nbsp('Три простых шага от заявки до денег на вашем счёте.') }}
         </p>
       </div>
 
@@ -38,10 +38,10 @@ const steps = [
         >
           <span class="step-number">{{ item.step }}</span>
           <h3 class="mt-4 text-xl font-semibold text-slate-900">
-            {{ item.title }}
+            {{ nbsp(item.title) }}
           </h3>
           <p class="mt-2 text-base leading-relaxed text-slate-600">
-            {{ item.description }}
+            {{ nbsp(item.description) }}
           </p>
         </article>
       </div>

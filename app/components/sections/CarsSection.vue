@@ -99,9 +99,9 @@ onUnmounted(() => {
     <div class="container-content">
       <div class="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
         <div class="section-header">
-          <h2 class="section-title">Недавно выкупленные авто</h2>
+          <h2 class="section-title">{{ nbsp('Недавно выкупленные авто') }}</h2>
           <p class="section-subtitle">
-            Реальные автомобили, которые мы уже выкупили у владельцев.
+            {{ nbsp('Реальные автомобили, которые мы уже выкупили у владельцев.') }}
           </p>
         </div>
 

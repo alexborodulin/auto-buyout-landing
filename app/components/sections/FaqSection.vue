@@ -48,9 +48,9 @@ function toggle(i: number) {
   <section id="faq" class="section" itemscope itemtype="https://schema.org/FAQPage">
     <div class="container-content">
       <div class="section-header">
-        <h2 class="section-title">Частые вопросы</h2>
+        <h2 class="section-title">{{ nbsp('Частые вопросы') }}</h2>
         <p class="section-subtitle">
-          Отвечаем на вопросы, которые чаще всего задают перед продажей автомобиля.
+          {{ nbsp('Отвечаем на вопросы, которые чаще всего задают перед продажей автомобиля.') }}
         </p>
       </div>
 
@@ -69,7 +69,7 @@ function toggle(i: number) {
             @click="toggle(i)"
           >
             <span itemprop="name" class="text-base font-semibold text-slate-900 sm:text-lg">
-              {{ faq.question }}
+              {{ nbsp(faq.question) }}
             </span>
             <svg
               class="size-5 shrink-0 text-slate-400 transition-transform duration-200"
@@ -90,7 +90,7 @@ function toggle(i: number) {
             itemtype="https://schema.org/Answer"
           >
             <p itemprop="text" class="px-6 pb-5 text-base leading-relaxed text-slate-600">
-              {{ faq.answer }}
+              {{ nbsp(faq.answer) }}
             </p>
           </div>
         </div>
