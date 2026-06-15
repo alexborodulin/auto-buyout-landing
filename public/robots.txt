@@ -1,2 +1,4 @@
 User-Agent: *
 Disallow:
+
+Sitemap: https://1выкуп.рф/sitemap.xml

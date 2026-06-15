@@ -36,6 +36,7 @@ export default defineNuxtConfig({
 
   sitemap: {
     autoLastmod: true,
+    zeroRuntime: true,
   },
 
   app: {
@@ -44,6 +45,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'robots', content: 'index, follow' },
         { name: 'format-detection', content: 'telephone=no' },
+        { name: 'yandex-verification', content: 'cada7f0a46778189' },
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
