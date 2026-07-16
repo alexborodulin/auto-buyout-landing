@@ -53,6 +53,12 @@ export default defineNuxtConfig({
         { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' },
         { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
       ],
+      noscript: [
+        {
+          children:
+            '<div><img src="https://mc.yandex.ru/watch/110802910" style="position:absolute; left:-9999px;" alt="" /></div>',
+        },
+      ],
     },
   },
 })
