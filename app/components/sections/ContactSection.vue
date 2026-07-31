@@ -3,7 +3,6 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
 import { contactPhones } from '~/constants/contact'
-import { contactEmail } from '~/constants/site'
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 const PHONE_PREFIX = '+7 ('
@@ -142,9 +141,15 @@ const onSubmit = handleSubmit(async (values) => {
     <div class="container-content">
       <div class="grid gap-10 md:grid-cols-2 md:items-start md:gap-12 lg:items-center">
         <div>
-          <h2 class="text-3xl font-bold md:text-3xl lg:text-4xl">{{ nbsp('Оцените автомобиль бесплатно') }}</h2>
+          <h2 class="text-3xl font-bold md:text-3xl lg:text-4xl">
+            {{ nbsp('Оцените автомобиль бесплатно') }}
+          </h2>
           <p class="mt-4 text-lg text-slate-300 lg:text-xl">
-            {{ nbsp('Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.') }}
+            {{
+              nbsp(
+                'Оставьте заявку — перезвоним в течение 15 минут и назовём предварительную цену.',
+              )
+            }}
           </p>
           <ul class="mt-8 space-y-3 text-slate-300">
             <li>
@@ -158,10 +163,6 @@ const onSubmit = handleSubmit(async (values) => {
               <a :href="`tel:${contactPhones.short.tel}`" class="contact-phone-link">
                 {{ contactPhones.short.display }}
               </a>
-            </li>
-            <li>
-              ✉️
-              <a :href="contactEmail.mailto" class="contact-phone-link">{{ contactEmail.display }}</a>
             </li>
             <li>📍 {{ nbsp('Пенза и Пензенская область') }}</li>
           </ul>

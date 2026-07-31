@@ -5,6 +5,6 @@ export const contactPhones = {
   },
   short: {
     display: '709-058',
-    tel: '+78412709058',
+    tel: '+79022039058',
   },
 } as const
