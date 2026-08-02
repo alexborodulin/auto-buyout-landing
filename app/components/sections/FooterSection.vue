@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import { contactPhones } from '~/constants/contact'
+import { metrikaGoals, reachGoal } from '~/utils/metrika'
+
+function onPhoneClick() {
+  reachGoal(metrikaGoals.phoneClick)
+}
 </script>
 
 <template>
@@ -15,9 +20,17 @@ import { contactPhones } from '~/constants/contact'
           </span>
         </p>
         <p class="mt-2 text-base text-slate-500">
-          <a :href="`tel:${contactPhones.full.tel}`" class="link-muted">{{ contactPhones.full.display }}</a>
+          <a
+            :href="`tel:${contactPhones.full.tel}`"
+            class="link-muted"
+            @click="onPhoneClick"
+          >{{ contactPhones.full.display }}</a>
           <span class="mx-2 text-slate-300">·</span>
-          <a :href="`tel:${contactPhones.short.tel}`" class="link-muted">{{ contactPhones.short.display }}</a>
+          <a
+            :href="`tel:${contactPhones.short.tel}`"
+            class="link-muted"
+            @click="onPhoneClick"
+          >{{ contactPhones.short.display }}</a>
         </p>
       </div>
       <nav class="flex gap-6">

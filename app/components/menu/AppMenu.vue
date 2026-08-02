@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { contactPhones } from '~/constants/contact'
+import { metrikaGoals, reachGoal } from '~/utils/metrika'
 
 const links = [
   { label: 'Примеры', href: '#cars' },
@@ -13,6 +14,10 @@ const { isMobileMenuOpen } = useMobileMenu()
 
 function closeMenu() {
   isMobileMenuOpen.value = false
+}
+
+function onPhoneClick() {
+  reachGoal(metrikaGoals.phoneClick)
 }
 
 watch(isMobileMenuOpen, (open) => {
@@ -64,6 +69,7 @@ onUnmounted(() => {
       :href="`tel:${contactPhones.short.tel}`"
       class="menu-phone-fab lg:hidden"
       aria-label="Позвонить {{ contactPhones.short.display }}"
+      @click="onPhoneClick"
     >
       <svg
         class="size-3.5 shrink-0"
@@ -98,7 +104,7 @@ onUnmounted(() => {
       </nav>
 
       <div class="hidden items-center gap-3 lg:flex">
-        <a :href="`tel:${contactPhones.short.tel}`" class="menu-phone-short">
+        <a :href="`tel:${contactPhones.short.tel}`" class="menu-phone-short" @click="onPhoneClick">
           <svg
             class="size-4 shrink-0"
             fill="none"
@@ -138,14 +144,20 @@ onUnmounted(() => {
         <a
           :href="`tel:${contactPhones.full.tel}`"
           class="contact-phone-link block text-base font-semibold text-slate-900"
-          @click="closeMenu"
+          @click="
+            onPhoneClick()
+            closeMenu()
+          "
         >
           {{ contactPhones.full.display }}
         </a>
         <a
           :href="`tel:${contactPhones.short.tel}`"
           class="contact-phone-link block text-sm text-slate-600"
-          @click="closeMenu"
+          @click="
+            onPhoneClick()
+            closeMenu()
+          "
         >
           {{ nbsp(`Короткий: ${contactPhones.short.display}`) }}
         </a>

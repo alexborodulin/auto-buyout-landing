@@ -3,6 +3,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
 import { contactPhones } from '~/constants/contact'
+import { metrikaGoals, reachGoal } from '~/utils/metrika'
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
 const PHONE_PREFIX = '+7 ('
@@ -124,6 +125,7 @@ const onSubmit = handleSubmit(async (values) => {
     resetForm()
     honeypot.value = ''
     showSuccessModal.value = true
+    reachGoal(metrikaGoals.contactFormSubmit)
   } catch (err: unknown) {
     const message =
       err && typeof err === 'object' && 'data' in err
@@ -154,13 +156,21 @@ const onSubmit = handleSubmit(async (values) => {
           <ul class="mt-8 space-y-3 text-slate-300">
             <li>
               📞
-              <a :href="`tel:${contactPhones.full.tel}`" class="contact-phone-link">
+              <a
+                :href="`tel:${contactPhones.full.tel}`"
+                class="contact-phone-link"
+                @click="reachGoal(metrikaGoals.phoneClick)"
+              >
                 {{ contactPhones.full.display }}
               </a>
             </li>
             <li>
               📞 Короткий номер:
-              <a :href="`tel:${contactPhones.short.tel}`" class="contact-phone-link">
+              <a
+                :href="`tel:${contactPhones.short.tel}`"
+                class="contact-phone-link"
+                @click="reachGoal(metrikaGoals.phoneClick)"
+              >
                 {{ contactPhones.short.display }}
               </a>
             </li>
