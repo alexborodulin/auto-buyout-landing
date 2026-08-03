@@ -20,6 +20,11 @@ function onPhoneClick() {
   reachGoal(metrikaGoals.phoneClick)
 }
 
+function onPhoneClickAndClose() {
+  onPhoneClick()
+  closeMenu()
+}
+
 watch(isMobileMenuOpen, (open) => {
   if (!import.meta.client) return
   document.body.style.overflow = open ? 'hidden' : ''
@@ -144,20 +149,14 @@ onUnmounted(() => {
         <a
           :href="`tel:${contactPhones.full.tel}`"
           class="contact-phone-link block text-base font-semibold text-slate-900"
-          @click="
-            onPhoneClick()
-            closeMenu()
-          "
+          @click="onPhoneClickAndClose"
         >
           {{ contactPhones.full.display }}
         </a>
         <a
           :href="`tel:${contactPhones.short.tel}`"
           class="contact-phone-link block text-sm text-slate-600"
-          @click="
-            onPhoneClick()
-            closeMenu()
-          "
+          @click="onPhoneClickAndClose"
         >
           {{ nbsp(`Короткий: ${contactPhones.short.display}`) }}
         </a>

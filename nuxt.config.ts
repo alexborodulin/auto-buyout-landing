@@ -39,6 +39,21 @@ export default defineNuxtConfig({
     zeroRuntime: true,
   },
 
+  // Главная почти статическая — отдаём с CDN, API остаётся серверным
+  routeRules: {
+    '/': { prerender: true },
+    '/api/**': { cache: false },
+  },
+
+  nitro: {
+    vercel: {
+      functions: {
+        regions: ['fra1'],
+        maxDuration: 15,
+      },
+    },
+  },
+
   app: {
     head: {
       htmlAttrs: { lang: 'ru' },
@@ -68,7 +83,7 @@ export default defineNuxtConfig({
   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
 })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110802910', 'ym');
-ym(110802910, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+ym(110802910, 'init', {ssr:true, webvisor:false, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 `.replace(/\n/g, ''),
         },
       ],
