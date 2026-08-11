@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import carMain from '~/assets/images/car-main.webp'
+import { contactPhones } from '~/constants/contact'
+import { metrikaGoals, reachGoal } from '~/utils/metrika'
 
 const { isMobileMenuOpen } = useMobileMenu()
 
@@ -25,6 +27,10 @@ const heroTags = [
     color: 'border-violet-200 bg-violet-50/95 text-violet-700',
   },
 ]
+
+function onPhoneClick() {
+  reachGoal(metrikaGoals.phoneClick)
+}
 </script>
 
 <template>
@@ -68,7 +74,13 @@ const heroTags = [
         </p>
         <div class="mt-10 flex flex-wrap gap-4">
           <a href="#contact" class="btn-primary">{{ nbsp('Получить оценку') }}</a>
-          <a href="#how-it-works" class="btn-outline">{{ nbsp('Как это работает') }}</a>
+          <a
+            :href="`tel:${contactPhones.full.tel}`"
+            class="btn-outline"
+            @click="onPhoneClick"
+          >
+            {{ nbsp(`Позвонить ${contactPhones.full.display}`) }}
+          </a>
         </div>
       </div>
     </div>

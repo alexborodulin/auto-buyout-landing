@@ -225,7 +225,10 @@ const onSubmit = handleSubmit(async (values) => {
               </p>
             </div>
             <div>
-              <label for="car" class="label">Автомобиль</label>
+              <label for="car" class="label">
+                Автомобиль
+                <span class="font-normal text-slate-400">{{ nbsp('(необязательно)') }}</span>
+              </label>
               <input
                 id="car"
                 v-model="car"
@@ -242,7 +245,11 @@ const onSubmit = handleSubmit(async (values) => {
           <p v-if="submitError" class="error-message mt-4 text-center">
             {{ submitError }}
           </p>
-          <button type="submit" class="btn-primary mt-6 w-full" :disabled="isSubmitting">
+          <button
+            type="submit"
+            class="btn-primary mt-6 w-full py-4 text-lg sm:py-3 sm:text-base"
+            :disabled="isSubmitting"
+          >
             {{ nbsp(isSubmitting ? 'Отправка…' : 'Отправить заявку') }}
           </button>
         </form>

@@ -42,6 +42,7 @@ export default defineNuxtConfig({
   // Главная почти статическая — отдаём с CDN, API остаётся серверным
   routeRules: {
     '/': { prerender: true },
+    '/promo': { prerender: true },
     '/api/**': { cache: false },
   },
 
