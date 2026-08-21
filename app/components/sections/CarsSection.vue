@@ -46,54 +46,23 @@ const cars = [
   { image: car19, make: 'Geely Atlas Pro', year: '2022', orientation: 'landscape' as const },
 ]
 
-const currentIndex = ref(0)
-const slidesPerView = ref(1)
-
-function updateSlidesPerView() {
-  const width = window.innerWidth
-  if (width >= 1024) slidesPerView.value = 3
-  else if (width >= 768) slidesPerView.value = 2
-  else slidesPerView.value = 1
-}
-
-const maxIndex = computed(() => Math.max(0, cars.length - slidesPerView.value))
-
-const slideStep = computed(() => 100 / slidesPerView.value)
-
-const trackStyle = computed(() => ({
-  transform: `translateX(-${currentIndex.value * slideStep.value}%)`,
-}))
+const {
+  viewport,
+  currentIndex,
+  maxIndex,
+  goTo,
+  next,
+  prev,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+  onClickCapture,
+  onKeydown,
+} = useCarousel(() => cars.length)
 
 const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) => i))
 
-function goTo(index: number) {
-  currentIndex.value = Math.min(Math.max(index, 0), maxIndex.value)
-}
-
-function next() {
-  goTo(currentIndex.value + 1)
-}
-
-function prev() {
-  goTo(currentIndex.value - 1)
-}
-
-const { onTouchStart, onTouchEnd } = useSwipe({ onSwipeLeft: next, onSwipeRight: prev })
-
-watch(slidesPerView, () => {
-  if (currentIndex.value > maxIndex.value) {
-    currentIndex.value = maxIndex.value
-  }
-})
-
-onMounted(() => {
-  updateSlidesPerView()
-  window.addEventListener('resize', updateSlidesPerView)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateSlidesPerView)
-})
 </script>
 
 <template>
@@ -133,17 +102,26 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="mt-10 overflow-hidden">
-        <div
-          class="flex transition-transform duration-300 ease-out"
-          :style="trackStyle"
-          @touchstart.passive="onTouchStart"
-          @touchend.passive="onTouchEnd"
-        >
+      <div
+        ref="viewport"
+        class="slider-viewport mt-6"
+        tabindex="0"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Недавно выкупленные авто"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerCancel"
+        @click.capture="onClickCapture"
+        @keydown="onKeydown"
+      >
+        <div class="flex">
           <article
             v-for="(car, index) in cars"
-            :key="index"
-            class="w-full shrink-0 px-2 md:w-1/2 lg:w-1/3"
+            :key="`${car.make}-${car.year}-${index}`"
+            data-slide
+            class="slider-slide"
           >
             <div class="car-slide-card">
               <div
@@ -156,6 +134,7 @@ onUnmounted(() => {
                   class="car-slide-image"
                   :class="{ 'car-slide-image-landscape': car.orientation === 'landscape' }"
                   loading="lazy"
+                  draggable="false"
                 />
               </div>
               <p class="car-slide-caption">
@@ -166,7 +145,7 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="mt-6 flex justify-center gap-2">
+      <div class="mt-6 hidden justify-center gap-2 sm:flex">
         <button
           v-for="dot in dots"
           :key="dot"

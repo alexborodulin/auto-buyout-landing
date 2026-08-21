@@ -1,3 +1,10 @@
 {
-  "regions": ["fra1"]
+  "regions": ["fra1"],
+  "redirects": [
+    {
+      "source": "/promo",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
 }

@@ -1,4 +1,5 @@
 User-Agent: *
-Disallow:
+Disallow: /privacy
+Disallow: /consent
 
 Sitemap: https://1выкуп.рф/sitemap.xml

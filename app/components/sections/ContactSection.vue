@@ -3,6 +3,7 @@ import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/yup'
 import * as yup from 'yup'
 import { contactPhones } from '~/constants/contact'
+import { CONTACT_FORM_ID, CONSENT_VERSION, legalPaths } from '~/constants/legal'
 import { metrikaGoals, reachGoal } from '~/utils/metrika'
 
 const phoneRegex = /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/
@@ -19,15 +20,22 @@ const schema = toTypedSchema(
   yup.object({
     name: yup
       .string()
-      .required('Введите имя')
-      .min(2, 'Минимум 2 символа')
+      .transform((value: string) => value?.trim() ?? '')
       .max(50, 'Максимум 50 символов')
-      .matches(/^[а-яА-ЯёЁa-zA-Z\s-]+$/, 'Только буквы'),
+      .test('name-optional', 'Минимум 2 символа', (value) => !value || value.length >= 2)
+      .test('name-letters', 'Только буквы', (value) => !value || /^[а-яА-ЯёЁa-zA-Z\s-]+$/.test(value))
+      .notRequired(),
     phone: yup
       .string()
       .required('Введите телефон')
       .matches(phoneRegex, 'Введите полный номер телефона'),
     car: yup.string().max(80, 'Максимум 80 символов').notRequired(),
+    consentPersonalData: yup
+      .boolean()
+      .oneOf([true], 'Нужно согласие на обработку персональных данных'),
+    consentPrivacy: yup
+      .boolean()
+      .oneOf([true], 'Подтвердите, что ознакомились с политикой конфиденциальности'),
   }),
 )
 
@@ -45,12 +53,16 @@ const {
     name: '',
     phone: '',
     car: '',
+    consentPersonalData: false,
+    consentPrivacy: false,
   },
 })
 
 const [name] = defineField('name', noAutoValidateConfig)
 const [phone] = defineField('phone', noAutoValidateConfig)
 const [car] = defineField('car', noAutoValidateConfig)
+const [consentPersonalData] = defineField('consentPersonalData', noAutoValidateConfig)
+const [consentPrivacy] = defineField('consentPrivacy', noAutoValidateConfig)
 
 const honeypot = ref('')
 const isSubmitting = ref(false)
@@ -107,8 +119,10 @@ function onCarBlur() {
 }
 
 const showSuccessModal = ref(false)
+const route = useRoute()
 
 const onSubmit = handleSubmit(async (values) => {
+  if (isSubmitting.value) return
   isSubmitting.value = true
   submitError.value = ''
 
@@ -116,16 +130,21 @@ const onSubmit = handleSubmit(async (values) => {
     await $fetch('/api/contact', {
       method: 'POST',
       body: {
-        name: values.name,
+        name: values.name || undefined,
         phone: values.phone,
         car: values.car || undefined,
+        formId: CONTACT_FORM_ID,
+        consentVersion: CONSENT_VERSION,
+        consentAcceptedAt: new Date().toISOString(),
+        consentPersonalData: true,
+        consentPrivacy: true,
         _hp: honeypot.value,
       },
     })
     resetForm()
     honeypot.value = ''
     showSuccessModal.value = true
-    reachGoal(metrikaGoals.contactFormSubmit)
+    reachGoal(metrikaGoals.formLead, { form: CONTACT_FORM_ID, page: route.path })
   } catch (err: unknown) {
     const message =
       err && typeof err === 'object' && 'data' in err
@@ -158,20 +177,10 @@ const onSubmit = handleSubmit(async (values) => {
               📞
               <a
                 :href="`tel:${contactPhones.full.tel}`"
-                class="contact-phone-link"
+                class="contact-phone-link inline-flex min-h-11 items-center"
                 @click="reachGoal(metrikaGoals.phoneClick)"
               >
                 {{ contactPhones.full.display }}
-              </a>
-            </li>
-            <li>
-              📞 Короткий номер:
-              <a
-                :href="`tel:${contactPhones.short.tel}`"
-                class="contact-phone-link"
-                @click="reachGoal(metrikaGoals.phoneClick)"
-              >
-                {{ contactPhones.short.display }}
               </a>
             </li>
             <li>📍 {{ nbsp('Пенза и Пензенская область') }}</li>
@@ -179,7 +188,7 @@ const onSubmit = handleSubmit(async (values) => {
         </div>
 
         <form
-          class="relative rounded-card bg-surface-card p-6 text-slate-900 sm:p-8"
+          class="relative rounded-card bg-surface-card p-4 text-slate-900 sm:p-8"
           novalidate
           @submit.prevent="onSubmit"
         >
@@ -195,7 +204,10 @@ const onSubmit = handleSubmit(async (values) => {
               class="absolute size-0 overflow-hidden opacity-0"
             />
             <div>
-              <label for="name" class="label">Ваше имя</label>
+              <label for="name" class="label">
+                Ваше имя
+                <span class="font-normal text-slate-400">{{ nbsp('(необязательно)') }}</span>
+              </label>
               <input
                 id="name"
                 v-model="name"
@@ -241,6 +253,50 @@ const onSubmit = handleSubmit(async (values) => {
                 {{ errors.car }}
               </p>
             </div>
+            <div>
+              <label class="flex min-h-11 cursor-pointer items-start gap-3">
+                <input
+                  v-model="consentPersonalData"
+                  type="checkbox"
+                  class="checkbox mt-0.5"
+                  :aria-invalid="Boolean(errors.consentPersonalData)"
+                />
+                <span class="text-base leading-snug text-slate-700">
+                  Согласен на
+                  <NuxtLink
+                    :to="legalPaths.consent"
+                    class="text-brand underline-offset-2 hover:underline"
+                    target="_blank"
+                    >обработку персональных данных</NuxtLink
+                  >
+                </span>
+              </label>
+              <p v-if="errors.consentPersonalData" class="error-message mt-1">
+                {{ errors.consentPersonalData }}
+              </p>
+            </div>
+            <div>
+              <label class="flex min-h-11 cursor-pointer items-start gap-3">
+                <input
+                  v-model="consentPrivacy"
+                  type="checkbox"
+                  class="checkbox mt-0.5"
+                  :aria-invalid="Boolean(errors.consentPrivacy)"
+                />
+                <span class="text-base leading-snug text-slate-700">
+                  Ознакомлен с
+                  <NuxtLink
+                    :to="legalPaths.privacy"
+                    class="text-brand underline-offset-2 hover:underline"
+                    target="_blank"
+                    >политикой конфиденциальности</NuxtLink
+                  >
+                </span>
+              </label>
+              <p v-if="errors.consentPrivacy" class="error-message mt-1">
+                {{ errors.consentPrivacy }}
+              </p>
+            </div>
           </div>
           <p v-if="submitError" class="error-message mt-4 text-center">
             {{ submitError }}
@@ -250,7 +306,7 @@ const onSubmit = handleSubmit(async (values) => {
             class="btn-primary mt-6 w-full py-4 text-lg sm:py-3 sm:text-base"
             :disabled="isSubmitting"
           >
-            {{ nbsp(isSubmitting ? 'Отправка…' : 'Отправить заявку') }}
+            {{ nbsp(isSubmitting ? 'Отправка…' : 'Оценить авто') }}
           </button>
         </form>
       </div>

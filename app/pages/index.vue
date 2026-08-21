@@ -71,8 +71,8 @@ useHead({
 <template>
   <div>
     <HeroSection />
-    <CarsSection />
     <AdvantagesSection />
+    <CarsSection />
     <ServicesSection />
     <HowItWorksSection />
     <DocumentsSection />

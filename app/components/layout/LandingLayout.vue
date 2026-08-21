@@ -14,6 +14,7 @@
 
     <FooterSection />
 
+    <CookieBanner />
     <ScrollTopButton />
   </div>
 </template>

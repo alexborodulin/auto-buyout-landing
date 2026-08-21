@@ -41,7 +41,7 @@ function onPhoneClick() {
       alt=""
       aria-hidden="true"
       fetchpriority="high"
-      class="pointer-events-none absolute -top-20 right-0 z-[75] h-36 w-auto max-w-[55%] object-contain object-right sm:-top-24 sm:h-40 md:h-48 md:max-w-[50%] lg:hidden"
+      class="pointer-events-none absolute -top-8 right-0 z-[5] h-28 w-auto max-w-[48%] object-contain object-right sm:-top-24 sm:h-40 md:h-48 md:max-w-[50%] lg:hidden"
     />
 
     <div
@@ -61,25 +61,26 @@ function onPhoneClick() {
       </span>
     </div>
 
-    <div class="container-content relative z-[5] py-16 md:py-20 lg:py-28">
+    <div class="container-content relative z-[5] py-8 md:py-20 lg:py-28">
       <div class="max-w-2xl md:max-w-xl lg:max-w-2xl">
         <p class="badge">{{ nbsp('Выкуп автомобилей в Пензе') }}</p>
         <h1
-          class="text-4xl font-bold leading-[1.15] sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:text-6xl"
+          class="text-3xl font-bold leading-tight sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:text-6xl"
         >
           {{ nbsp('Продайте авто в Пензе — честно и без лишних хлопот') }}
         </h1>
-        <p class="mt-6 text-lg text-slate-600 md:text-xl">
+        <p class="mt-4 text-base text-slate-600 sm:mt-6 sm:text-lg md:text-xl">
           {{ nbsp('Срочный выкуп автомобилей в любом состоянии по Пензе и Пензенской области. Бесплатная оценка, деньги в день сделки, выезд в течение 2 часов.') }}
         </p>
-        <div class="mt-10 flex flex-wrap gap-4">
-          <a href="#contact" class="btn-primary">{{ nbsp('Получить оценку') }}</a>
+        <div class="mt-6 flex flex-wrap gap-3 sm:mt-10 sm:gap-4">
+          <a href="#contact" class="btn-primary">{{ nbsp('Оценить авто') }}</a>
           <a
             :href="`tel:${contactPhones.full.tel}`"
             class="btn-outline"
+            :aria-label="`Позвонить ${contactPhones.full.display}`"
             @click="onPhoneClick"
           >
-            {{ nbsp(`Позвонить ${contactPhones.full.display}`) }}
+            {{ nbsp('Позвонить') }}
           </a>
         </div>
       </div>

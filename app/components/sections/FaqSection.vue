@@ -54,7 +54,7 @@ function toggle(i: number) {
         </p>
       </div>
 
-      <div class="mt-12 mx-auto max-w-3xl divide-y divide-slate-200 rounded-card border border-slate-200">
+      <div class="mt-6 mx-auto max-w-3xl divide-y divide-slate-200 rounded-card border border-slate-200">
         <div
           v-for="(faq, i) in faqs"
           :key="faq.question"
@@ -64,7 +64,7 @@ function toggle(i: number) {
         >
           <button
             type="button"
-            class="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+            class="flex min-h-11 w-full items-center justify-between gap-4 px-4 py-4 text-left sm:px-6 sm:py-5"
             :aria-expanded="openIndex === i"
             @click="toggle(i)"
           >
@@ -89,7 +89,7 @@ function toggle(i: number) {
             itemprop="acceptedAnswer"
             itemtype="https://schema.org/Answer"
           >
-            <p itemprop="text" class="px-6 pb-5 text-base leading-relaxed text-slate-600">
+            <p itemprop="text" class="px-4 pb-4 text-base leading-relaxed text-slate-600 sm:px-6 sm:pb-5">
               {{ nbsp(faq.answer) }}
             </p>
           </div>

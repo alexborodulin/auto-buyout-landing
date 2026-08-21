@@ -16,10 +16,16 @@ function formatMessage(data: ContactPayload, siteUrl: string): string {
   const lines = [
     '🚗 Новая заявка с сайта',
     `Сайт: ${siteUrl}`,
-    `Имя: ${data.name}`,
+    `Имя: ${data.name || 'не указано'}`,
     `Телефон: ${data.phone}`,
   ]
   if (data.car) lines.push(`Авто: ${data.car}`)
+  lines.push(
+    `Форма: ${data.formId}`,
+    `Согласие ПД: да (версия ${data.consentVersion})`,
+    `Политика конфиденциальности: ознакомлен`,
+    `Дата согласия: ${data.consentAcceptedAt}`,
+  )
   return lines.join('\n')
 }
 
@@ -58,14 +64,18 @@ export async function sendEmail(data: ContactPayload, config: NotifyConfig): Pro
   await transporter.sendMail({
     from: `"1Выкуп" <${smtpUser}>`,
     to: contactTo,
-    subject: `Заявка с ${siteUrl} — ${data.name}`,
+    subject: `Заявка с ${siteUrl} — ${data.name || data.phone}`,
     text: formatMessage(data, siteUrl),
     html: `
       <h2 style="font-family:sans-serif">Новая заявка</h2>
       <table style="font-family:sans-serif;font-size:15px">
-        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Имя</td><td>${escapeHtml(data.name)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Имя</td><td>${escapeHtml(data.name || 'не указано')}</td></tr>
         <tr><td style="padding:4px 12px 4px 0;color:#64748b">Телефон</td><td><a href="tel:${data.phone.replace(/\D/g, '')}">${escapeHtml(data.phone)}</a></td></tr>
         ${carLine}
+        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Форма</td><td>${escapeHtml(data.formId)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Согласие ПД</td><td>да, версия ${escapeHtml(data.consentVersion)}</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Политика</td><td>ознакомлен</td></tr>
+        <tr><td style="padding:4px 12px 4px 0;color:#64748b">Дата согласия</td><td>${escapeHtml(data.consentAcceptedAt)}</td></tr>
       </table>
     `,
   })

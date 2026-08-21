@@ -3,48 +3,50 @@ const steps = [
   {
     step: '01',
     title: 'Заявка',
-    description: 'Оставьте заявку на сайте или позвоните — уточним марку, год и состояние авто.',
+    description: 'Оставьте заявку или позвоните — уточним марку, год и состояние.',
   },
   {
     step: '02',
     title: 'Оценка',
-    description: 'Специалист приедет на осмотр или даст предварительную цену по фото.',
+    description: 'Приедем на осмотр или назовём цену по фото.',
   },
   {
     step: '03',
     title: 'Сделка',
-    description: 'Согласуем финальную сумму, подпишем договор и выплатим деньги сразу.',
+    description: 'Подпишем договор и выплатим деньги сразу.',
   },
 ]
 </script>
 
 <template>
-  <section id="how-it-works" class="section">
+  <section id="how-it-works" class="section py-6 md:py-16 lg:py-24">
     <div class="container-content">
       <div class="section-header">
         <h2 class="section-title">
           {{ nbsp('Как мы работаем') }}
         </h2>
-        <p class="section-subtitle">
-          {{ nbsp('Три простых шага от заявки до денег на вашем счёте.') }}
+        <p class="section-subtitle mt-2 sm:mt-4">
+          {{ nbsp('Три шага от заявки до денег.') }}
         </p>
       </div>
 
-      <div class="mt-12 grid gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-3">
-        <article
+      <ol class="mt-4 grid gap-2 sm:mt-10 sm:grid-cols-3 sm:gap-6">
+        <li
           v-for="item in steps"
           :key="item.step"
-          class="card-lg relative"
+          class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-surface-card p-3 sm:flex-col sm:items-start sm:p-6"
         >
-          <span class="step-number">{{ item.step }}</span>
-          <h3 class="mt-4 text-xl font-semibold text-slate-900">
-            {{ nbsp(item.title) }}
-          </h3>
-          <p class="mt-2 text-base leading-relaxed text-slate-600">
-            {{ nbsp(item.description) }}
-          </p>
-        </article>
-      </div>
+          <span class="step-number shrink-0 text-2xl sm:text-4xl">{{ item.step }}</span>
+          <div>
+            <h3 class="text-base font-semibold text-slate-900 sm:text-xl">
+              {{ nbsp(item.title) }}
+            </h3>
+            <p class="mt-0.5 text-base leading-snug text-slate-600 sm:mt-2 sm:leading-relaxed">
+              {{ nbsp(item.description) }}
+            </p>
+          </div>
+        </li>
+      </ol>
     </div>
   </section>
 </template>

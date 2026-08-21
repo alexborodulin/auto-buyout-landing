@@ -33,59 +33,28 @@ const services = [
   {
     title: 'Оценка онлайн',
     description: 'Отправьте фото — предварительную цену назовём за 15 минут.',
-    cta: 'Получить оценку',
+    cta: 'Оценить авто',
     icon: 'camera' as const,
   },
 ]
 
-const currentIndex = ref(0)
-const slidesPerView = ref(1)
-
-function updateSlidesPerView() {
-  const width = window.innerWidth
-  if (width >= 1024) slidesPerView.value = 3
-  else if (width >= 768) slidesPerView.value = 2
-  else slidesPerView.value = 1
-}
-
-const maxIndex = computed(() => Math.max(0, services.length - slidesPerView.value))
-
-const slideStep = computed(() => 100 / slidesPerView.value)
-
-const trackStyle = computed(() => ({
-  transform: `translateX(-${currentIndex.value * slideStep.value}%)`,
-}))
+const {
+  viewport,
+  currentIndex,
+  maxIndex,
+  goTo,
+  next,
+  prev,
+  onPointerDown,
+  onPointerMove,
+  onPointerUp,
+  onPointerCancel,
+  onClickCapture,
+  onKeydown,
+} = useCarousel(() => services.length)
 
 const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) => i))
 
-function goTo(index: number) {
-  currentIndex.value = Math.min(Math.max(index, 0), maxIndex.value)
-}
-
-function next() {
-  goTo(currentIndex.value + 1)
-}
-
-function prev() {
-  goTo(currentIndex.value - 1)
-}
-
-const { onTouchStart, onTouchEnd } = useSwipe({ onSwipeLeft: next, onSwipeRight: prev })
-
-watch(slidesPerView, () => {
-  if (currentIndex.value > maxIndex.value) {
-    currentIndex.value = maxIndex.value
-  }
-})
-
-onMounted(() => {
-  updateSlidesPerView()
-  window.addEventListener('resize', updateSlidesPerView)
-})
-
-onUnmounted(() => {
-  window.removeEventListener('resize', updateSlidesPerView)
-})
 </script>
 
 <template>
@@ -125,17 +94,26 @@ onUnmounted(() => {
         </div>
       </div>
 
-      <div class="mt-10 overflow-hidden">
-        <div
-          class="flex transition-transform duration-300 ease-out"
-          :style="trackStyle"
-          @touchstart.passive="onTouchStart"
-          @touchend.passive="onTouchEnd"
-        >
+      <div
+        ref="viewport"
+        class="slider-viewport mt-6 sm:mt-10"
+        tabindex="0"
+        role="region"
+        aria-roledescription="carousel"
+        aria-label="Наши услуги"
+        @pointerdown="onPointerDown"
+        @pointermove="onPointerMove"
+        @pointerup="onPointerUp"
+        @pointercancel="onPointerCancel"
+        @click.capture="onClickCapture"
+        @keydown="onKeydown"
+      >
+        <div class="flex">
           <article
             v-for="service in services"
             :key="service.title"
-            class="w-full shrink-0 px-2 md:w-1/2 lg:w-1/3"
+            data-slide
+            class="slider-slide"
           >
             <div class="card-interactive flex h-full flex-col">
               <div class="service-icon">

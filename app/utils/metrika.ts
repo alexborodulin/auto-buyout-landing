@@ -1,9 +1,9 @@
-/** Счётчик Яндекс Метрики (совпадает с nuxt.config). */
-export const METRIKA_ID = 110802910
+/** Счётчик Яндекс Метрики. */
+export const METRIKA_ID = 111716444
 
-/** Идентификаторы целей — заведи такие же в Метрике (JavaScript-событие). */
+/** Идентификаторы целей — JavaScript-события в Метрике. */
 export const metrikaGoals = {
-  contactFormSubmit: 'contact_form_submit',
+  formLead: 'form_lead',
   phoneClick: 'phone_click',
 } as const
 
@@ -13,7 +13,11 @@ declare global {
   }
 }
 
-export function reachGoal(goal: string) {
+export function reachGoal(goal: string, params?: Record<string, string | number | boolean>) {
   if (!import.meta.client) return
+  if (params) {
+    window.ym?.(METRIKA_ID, 'reachGoal', goal, params)
+    return
+  }
   window.ym?.(METRIKA_ID, 'reachGoal', goal)
 }
