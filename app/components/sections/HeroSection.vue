@@ -63,7 +63,10 @@ function onPhoneClick() {
 
     <div class="container-content relative z-[5] py-8 md:py-20 lg:py-28">
       <div class="max-w-2xl md:max-w-xl lg:max-w-2xl">
-        <p class="badge">{{ nbsp('Выкуп автомобилей в Пензе') }}</p>
+        <p class="badge">
+          <span class="sm:hidden">Выкуп авто в Пензе</span>
+          <span class="hidden sm:inline">{{ nbsp('Выкуп автомобилей в Пензе') }}</span>
+        </p>
         <h1
           class="text-3xl font-bold leading-tight sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:text-6xl"
         >
