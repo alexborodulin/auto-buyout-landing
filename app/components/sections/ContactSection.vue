@@ -267,6 +267,7 @@ const onSubmit = handleSubmit(async (values) => {
                     :to="legalPaths.consent"
                     class="text-brand underline-offset-2 hover:underline"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >обработку персональных данных</NuxtLink
                   >
                 </span>
@@ -289,6 +290,7 @@ const onSubmit = handleSubmit(async (values) => {
                     :to="legalPaths.privacy"
                     class="text-brand underline-offset-2 hover:underline"
                     target="_blank"
+                    rel="noopener noreferrer"
                     >политикой конфиденциальности</NuxtLink
                   >
                 </span>

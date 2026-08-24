@@ -49,7 +49,8 @@ const cars = [
 const {
   viewport,
   currentIndex,
-  maxIndex,
+  slides,
+  dots,
   goTo,
   next,
   prev,
@@ -59,9 +60,7 @@ const {
   onPointerCancel,
   onClickCapture,
   onKeydown,
-} = useCarousel(() => cars.length)
-
-const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) => i))
+} = useCarousel(() => cars)
 
 </script>
 
@@ -81,7 +80,6 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
             type="button"
             class="slider-btn"
             aria-label="Предыдущий слайд"
-            :disabled="currentIndex === 0"
             @click="prev"
           >
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -92,7 +90,6 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
             type="button"
             class="slider-btn"
             aria-label="Следующий слайд"
-            :disabled="currentIndex >= maxIndex"
             @click="next"
           >
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -118,27 +115,28 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
       >
         <div class="flex">
           <article
-            v-for="(car, index) in cars"
-            :key="`${car.make}-${car.year}-${index}`"
+            v-for="slide in slides"
+            :key="slide.key"
             data-slide
             class="slider-slide"
+            :aria-hidden="slide.clone"
           >
             <div class="car-slide-card">
               <div
                 class="car-slide-media"
-                :class="{ 'car-slide-media-landscape': car.orientation === 'landscape' }"
+                :class="{ 'car-slide-media-landscape': slide.item.orientation === 'landscape' }"
               >
                 <img
-                  :src="car.image"
-                  :alt="`${car.make} ${car.year}`"
+                  :src="slide.item.image"
+                  :alt="slide.clone ? '' : `${slide.item.make} ${slide.item.year}`"
                   class="car-slide-image"
-                  :class="{ 'car-slide-image-landscape': car.orientation === 'landscape' }"
+                  :class="{ 'car-slide-image-landscape': slide.item.orientation === 'landscape' }"
                   loading="lazy"
                   draggable="false"
                 />
               </div>
               <p class="car-slide-caption">
-                {{ car.make }}<span v-if="car.year">, {{ car.year }}</span>
+                {{ slide.item.make }}<span v-if="slide.item.year">, {{ slide.item.year }}</span>
               </p>
             </div>
           </article>

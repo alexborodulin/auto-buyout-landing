@@ -41,7 +41,8 @@ const services = [
 const {
   viewport,
   currentIndex,
-  maxIndex,
+  slides,
+  dots,
   goTo,
   next,
   prev,
@@ -51,9 +52,7 @@ const {
   onPointerCancel,
   onClickCapture,
   onKeydown,
-} = useCarousel(() => services.length)
-
-const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) => i))
+} = useCarousel(() => services)
 
 </script>
 
@@ -73,7 +72,6 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
             type="button"
             class="slider-btn"
             aria-label="Предыдущий слайд"
-            :disabled="currentIndex === 0"
             @click="prev"
           >
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -84,7 +82,6 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
             type="button"
             class="slider-btn"
             aria-label="Следующий слайд"
-            :disabled="currentIndex >= maxIndex"
             @click="next"
           >
             <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -110,23 +107,24 @@ const dots = computed(() => Array.from({ length: maxIndex.value + 1 }, (_, i) =>
       >
         <div class="flex">
           <article
-            v-for="service in services"
-            :key="service.title"
+            v-for="slide in slides"
+            :key="slide.key"
             data-slide
             class="slider-slide"
+            :aria-hidden="slide.clone"
           >
             <div class="card-interactive flex h-full flex-col">
               <div class="service-icon">
-                <ServiceIcon :name="service.icon" />
+                <ServiceIcon :name="slide.item.icon" />
               </div>
               <h3 class="text-lg font-semibold text-slate-900">
-                {{ nbsp(service.title) }}
+                {{ nbsp(slide.item.title) }}
               </h3>
               <p class="mt-2 flex-1 text-base leading-relaxed text-slate-600">
-                {{ nbsp(service.description) }}
+                {{ nbsp(slide.item.description) }}
               </p>
               <a href="#contact" class="btn-primary-sm mt-6 inline-flex self-start">
-                {{ nbsp(service.cta) }}
+                {{ nbsp(slide.item.cta) }}
               </a>
             </div>
           </article>

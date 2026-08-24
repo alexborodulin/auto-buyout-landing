@@ -6,8 +6,6 @@ import { metrikaGoals, reachGoal } from '~/utils/metrika'
 function onPhoneClick() {
   reachGoal(metrikaGoals.phoneClick)
 }
-
-const { openSettings: openCookieSettings } = useCookieConsent()
 </script>
 
 <template>
@@ -32,18 +30,22 @@ const { openSettings: openCookieSettings } = useCookieConsent()
       </div>
       <nav class="flex flex-col items-center gap-1 sm:items-end">
         <div class="flex flex-wrap justify-center gap-x-6">
-          <NuxtLink :to="legalPaths.privacy" class="link-muted inline-flex min-h-11 items-center">
+          <a
+            :href="legalPaths.privacy"
+            class="link-muted inline-flex min-h-11 items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Политика конфиденциальности
-          </NuxtLink>
-          <NuxtLink :to="legalPaths.consent" class="link-muted inline-flex min-h-11 items-center">
+          </a>
+          <a
+            :href="legalPaths.consent"
+            class="link-muted inline-flex min-h-11 items-center"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Согласие на обработку ПД
-          </NuxtLink>
-          <NuxtLink :to="legalPaths.cookies" class="link-muted inline-flex min-h-11 items-center">
-            Политика cookie
-          </NuxtLink>
-          <button type="button" class="link-muted inline-flex min-h-11 items-center" @click="openCookieSettings">
-            Настройки cookie
-          </button>
+          </a>
         </div>
         <div class="flex flex-wrap justify-center gap-x-6">
           <a href="/#advantages" class="link-muted inline-flex min-h-11 items-center">Преимущества</a>

@@ -94,7 +94,7 @@ html {
   }
 
   .menu-fixed {
-    @apply sticky top-0 z-[80] bg-surface-light/95 px-3 backdrop-blur-md sm:px-6 lg:px-8;
+    @apply fixed inset-x-0 top-0 z-[80] bg-surface-light/95 px-3 backdrop-blur-md sm:px-6 lg:px-8;
     padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
     padding-bottom: 0.5rem;
   }
@@ -104,9 +104,17 @@ html {
     @apply relative z-[80] overflow-hidden border border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md;
   }
 
+  .main-with-fixed-menu {
+    padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
+  }
+
   @media (min-width: 1024px) {
     .menu-fixed {
       padding-top: max(1rem, env(safe-area-inset-top, 0px));
+    }
+
+    .main-with-fixed-menu {
+      padding-top: calc(5.75rem + env(safe-area-inset-top, 0px));
     }
   }
 
@@ -180,9 +188,14 @@ html {
     display: none;
   }
 
-  .slider-viewport.is-dragging {
+  .slider-viewport.is-dragging,
+  .slider-viewport.is-jumping {
     @apply cursor-grabbing;
     scroll-snap-type: none;
+  }
+
+  .slider-viewport.is-jumping {
+    scroll-behavior: auto;
   }
 
   .slider-slide {
