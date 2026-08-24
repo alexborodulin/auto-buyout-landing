@@ -94,27 +94,34 @@ html {
   }
 
   .menu-fixed {
-    @apply fixed inset-x-0 top-0 z-[80] bg-surface-light/95 px-3 backdrop-blur-md sm:px-6 lg:px-8;
+    @apply fixed inset-x-0 top-0 z-[80] bg-transparent px-3 sm:px-6 lg:px-8;
     padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
     padding-bottom: 0.5rem;
+    transition:
+      background-color 0.2s ease,
+      backdrop-filter 0.2s ease;
+  }
+
+  .menu-fixed-solid {
+    @apply bg-surface-light/95 backdrop-blur-md;
   }
 
   .menu-bar {
     border-radius: 40px;
-    @apply relative z-[80] overflow-hidden border border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md;
+    @apply relative z-[80] overflow-hidden border border-transparent bg-transparent shadow-none;
+    transition:
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
-  .main-with-fixed-menu {
-    padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
+  .menu-bar-solid {
+    @apply border-slate-200/80 bg-white/95 shadow-sm backdrop-blur-md;
   }
 
   @media (min-width: 1024px) {
     .menu-fixed {
       padding-top: max(1rem, env(safe-area-inset-top, 0px));
-    }
-
-    .main-with-fixed-menu {
-      padding-top: calc(5.75rem + env(safe-area-inset-top, 0px));
     }
   }
 

@@ -3,8 +3,6 @@ import carMain from '~/assets/images/car-main.webp'
 import { contactPhones } from '~/constants/contact'
 import { metrikaGoals, reachGoal } from '~/utils/metrika'
 
-const { isMobileMenuOpen } = useMobileMenu()
-
 const heroTags = [
   {
     label: 'Безопасно',
@@ -35,15 +33,6 @@ function onPhoneClick() {
 
 <template>
   <section id="hero" class="hero-bg overflow-visible">
-    <img
-      v-show="!isMobileMenuOpen"
-      :src="carMain"
-      alt=""
-      aria-hidden="true"
-      fetchpriority="high"
-      class="pointer-events-none absolute -top-8 right-0 z-[5] h-28 w-auto max-w-[48%] object-contain object-right sm:-top-24 sm:h-40 md:h-48 md:max-w-[50%] lg:hidden"
-    />
-
     <div
       class="absolute inset-y-0 right-0 z-[2] hidden w-1/2 max-w-xl bg-contain bg-right bg-no-repeat lg:block"
       :style="{ backgroundImage: `url(${carMain})` }"
@@ -61,14 +50,21 @@ function onPhoneClick() {
       </span>
     </div>
 
-    <div class="container-content relative z-[5] py-8 md:py-20 lg:py-28">
-      <div class="max-w-2xl md:max-w-xl lg:max-w-2xl">
+    <div class="container-content relative z-[5] pb-8 pt-[calc(5.5rem+env(safe-area-inset-top,0px))] md:pb-20 md:pt-[calc(7rem+env(safe-area-inset-top,0px))] lg:pb-28 lg:pt-[calc(8rem+env(safe-area-inset-top,0px))]">
+      <div class="relative max-w-2xl md:max-w-xl lg:max-w-2xl">
+        <img
+          :src="carMain"
+          alt=""
+          aria-hidden="true"
+          fetchpriority="high"
+          class="pointer-events-none absolute -right-4 top-0 z-[1] h-32 w-auto max-w-[46%] object-contain object-right sm:-right-6 sm:h-44 md:h-52 md:max-w-[48%] lg:hidden"
+        />
         <p class="badge">
           <span class="sm:hidden">Выкуп авто в Пензе</span>
           <span class="hidden sm:inline">{{ nbsp('Выкуп автомобилей в Пензе') }}</span>
         </p>
         <h1
-          class="text-3xl font-bold leading-tight sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:text-6xl"
+          class="pr-[32%] text-2xl font-bold leading-tight sm:text-5xl sm:leading-tight md:text-4xl md:leading-tight lg:pr-0 lg:text-6xl"
         >
           {{ nbsp('Продайте авто в Пензе — честно и без лишних хлопот') }}
         </h1>
