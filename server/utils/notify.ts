@@ -102,13 +102,17 @@ export async function notifyContact(data: ContactPayload, config: NotifyConfig):
     .filter((r): r is PromiseRejectedResult => r.status === 'rejected')
     .map((r) => r.reason?.message ?? String(r.reason))
 
-  const telegramSkipped = !config.telegramBotToken || !config.telegramChatId
-  const emailSkipped = !config.smtpUser || !config.smtpPass || !config.contactTo
+  if (errors.length) {
+    console.error('[notify]', errors.join('; '))
+  }
 
-  const telegramOk = telegramSkipped || results[0]?.status === 'fulfilled'
-  const emailOk = emailSkipped || results[1]?.status === 'fulfilled'
+  const telegramConfigured = Boolean(config.telegramBotToken && config.telegramChatId)
+  const emailConfigured = Boolean(config.smtpUser && config.smtpPass && config.contactTo)
 
-  if (!telegramOk && !emailOk) {
+  const telegramDelivered = telegramConfigured && results[0]?.status === 'fulfilled'
+  const emailDelivered = emailConfigured && results[1]?.status === 'fulfilled'
+
+  if (!telegramDelivered && !emailDelivered) {
     throw new Error(errors.join('; ') || 'Не удалось отправить заявку')
   }
 }
