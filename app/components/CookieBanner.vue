@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import { legalPaths } from '~/constants/legal'
 
-const { showBanner, choice, settingsOpen, setChoice, closeSettings } = useCookieConsent()
+const { showBanner, choice, settingsOpen, setChoice, closeSettings, hydrate } = useCookieConsent()
+
+hydrate()
 
 const analyticsDraft = ref(false)
 

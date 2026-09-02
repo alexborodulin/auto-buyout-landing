@@ -54,20 +54,11 @@ function loadMetrika() {
 }
 
 export default defineNuxtPlugin(() => {
-  const { analyticsAllowed, hydrate } = useCookieConsent()
   const router = useRouter()
-  hydrate()
-
-  watch(
-    analyticsAllowed,
-    (allowed) => {
-      if (allowed) loadMetrika()
-    },
-    { immediate: true },
-  )
+  loadMetrika()
 
   router.afterEach((to) => {
-    if (!analyticsAllowed.value || !metrikaInitialized) return
+    if (!metrikaInitialized) return
     if (lastHitPath === to.fullPath) return
     lastHitPath = to.fullPath
     window.ym?.(METRIKA_ID, 'hit', to.fullPath)

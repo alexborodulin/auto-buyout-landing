@@ -33,14 +33,9 @@ export function useCookieConsent() {
   }
 
   function setChoice(next: CookieChoice) {
-    const disablingAnalytics = choice.value === 'all' && next === 'necessary'
     choice.value = next
     writeCookieChoice(next)
     settingsOpen.value = false
-
-    if (disablingAnalytics && import.meta.client) {
-      window.location.reload()
-    }
   }
 
   function openSettings() {
